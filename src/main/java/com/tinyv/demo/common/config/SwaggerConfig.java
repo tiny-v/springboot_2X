@@ -29,7 +29,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo)
                 .select()
                 //以扫描包的方式
-                .apis(RequestHandlerSelectors.basePackage("com.tinyv.demo.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.tinyv.demo.business.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
