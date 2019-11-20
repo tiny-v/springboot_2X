@@ -1,4 +1,4 @@
-package com.tinyv.demo.common.config;
+package com.tinyv.demo.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Created by YMa69 on 2019/11/8.
+ *
+ * @author YMa69
+ * @date 2019/11/8
  */
 @Configuration
 @EnableSwagger2
