@@ -19,6 +19,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    private static final String SWAGGER_BASE_SCAN_PACKAGE = "com.tinyv.demo.business.controller";
+
     @Bean
     public Docket createRestApi() {
         ApiInfo apiInfo = new ApiInfoBuilder()
@@ -31,7 +33,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo)
                 .select()
                 //以扫描包的方式
-                .apis(RequestHandlerSelectors.basePackage("com.tinyv.demo.business.controller"))
+                .apis(RequestHandlerSelectors.basePackage(SWAGGER_BASE_SCAN_PACKAGE))
                 .paths(PathSelectors.any())
                 .build();
     }
