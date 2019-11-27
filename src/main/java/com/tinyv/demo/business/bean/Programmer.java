@@ -13,6 +13,8 @@ public class Programmer implements Serializable{
 
     private String UUID;
 
+    private int num;
+
     private String nickname;
 
     private String description;
@@ -23,6 +25,14 @@ public class Programmer implements Serializable{
 
     public void setUUID(String UUID) {
         this.UUID = UUID;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public String getNickname() {

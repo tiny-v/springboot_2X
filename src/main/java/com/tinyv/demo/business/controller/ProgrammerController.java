@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  *
  * @author YMa69
@@ -25,10 +27,14 @@ public class ProgrammerController extends BaseController{
     @Autowired
     private ProgrammerService programmerService;
 
-    @RequestMapping(value="/getProgrammer", method= RequestMethod.GET)
-    public Programmer getProgrammer(String nickname){
-        logger.info("===== nickname:"+nickname);
-        return programmerService.getProgrammer(nickname);
+    @RequestMapping(value="/listProgrammers", method= RequestMethod.GET)
+    public List<Programmer> listProgrammer(){
+        return programmerService.listProgrammers();
+    }
+
+    @RequestMapping(value="/insertProgrammer", method= RequestMethod.POST)
+    public void insertProgrammer(Programmer programmer){
+        programmerService.insertProgrammer(programmer);
     }
 
 }

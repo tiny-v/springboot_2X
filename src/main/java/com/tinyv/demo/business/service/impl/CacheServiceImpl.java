@@ -23,6 +23,8 @@ public class CacheServiceImpl implements CacheService{
 
     private static Logger logger = LoggerFactory.getLogger(CacheServiceImpl.class);
 
+    private static final long SLEEP_TIME = 5*1000;
+
     @Autowired
     private Caffeine cacheCaffeine;
 
@@ -37,7 +39,7 @@ public class CacheServiceImpl implements CacheService{
     public String cacheableDemo(String cacheableTagId) {
         logger.info("====== step into method[cacheableDemo] ======");
         try{
-            Thread.sleep(10*1000);
+            Thread.sleep(SLEEP_TIME);
         }catch (InterruptedException e){
             logger.info("method[cacheableDemo]:"+e.getMessage());
         }
@@ -55,7 +57,7 @@ public class CacheServiceImpl implements CacheService{
     public String cachePutDemo(String cachePutTagId) {
         logger.info("====== step into method[cachePutDemo] ======");
         try{
-            Thread.sleep(10*1000);
+            Thread.sleep(SLEEP_TIME);
         }catch (InterruptedException e){
             logger.info("method[cachePutDemo]:"+e.getMessage());
         }
@@ -73,7 +75,7 @@ public class CacheServiceImpl implements CacheService{
     public String cacheEvictDemo(String cacheEvictTagId) {
         logger.info("====== step into method[cacheEvictDemo] ======");
         try{
-            Thread.sleep(10*1000);
+            Thread.sleep(SLEEP_TIME);
         }catch (InterruptedException e){
             logger.info("method[cacheEvictDemo]:"+e.getMessage());
         }

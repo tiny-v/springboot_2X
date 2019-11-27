@@ -2,6 +2,8 @@ package com.tinyv.demo.business.service;
 
 import com.tinyv.demo.business.bean.Programmer;
 
+import java.util.List;
+
 /**
  *
  * @author YMa69
@@ -10,10 +12,10 @@ import com.tinyv.demo.business.bean.Programmer;
 public interface ProgrammerService {
 
     /**
-     * get programmer by nickname
-     * @param nickname
      * @return
      */
-    Programmer getProgrammer(String nickname);
+    List<Programmer> listProgrammers();
+
+    void insertProgrammer(Programmer programmer);
 
 }
