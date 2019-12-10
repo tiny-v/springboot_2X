@@ -1,8 +1,6 @@
 package com.tinyv.demo.business.dao;
 
 import com.tinyv.demo.business.bean.Programmer;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
 /**
@@ -19,6 +17,7 @@ public interface ProgrammerDao {
     void insertProgrammer(Programmer programmer);
 
     /**
+     * 查询所有的 programmer
      * @return
      */
     List<Programmer> listProgrammers();

@@ -1,11 +1,11 @@
-package com.tinyv.demo.business.controller;
+package com.tinyv.demo.test.service;
 
 import com.tinyv.demo.MyApps;
 import com.tinyv.demo.business.bean.Programmer;
 import com.tinyv.demo.business.service.ProgrammerService;
 import com.tinyv.demo.business.service.impl.CacheServiceImpl;
-import com.tinyv.demo.business.tasks.MySqlTestTask;
-import com.tinyv.demo.business.util.LocalExecutorService;
+import com.tinyv.demo.test.tasks.MySqlTestTask;
+import com.tinyv.demo.test.util.LocalExecutorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class ProgrammerControllerTest {
 
     @Test
     public void test1() throws InterruptedException{
-        ExecutorService executorService = new LocalExecutorService().getExecutorService();
+
         Programmer programmer = null;
         ArrayList<Callable<String>> list = new ArrayList<>();
         for(int i=0; i<5000; i++){
@@ -41,6 +41,7 @@ public class ProgrammerControllerTest {
             MySqlTestTask mySqlTestTask = new MySqlTestTask(programmerService, "INSERT", programmer);
             list.add(mySqlTestTask);
         }
+        ExecutorService executorService = LocalExecutorService.getInstance();
         List<Future<String>> futureList = executorService.invokeAll(list);
         logger.info("future list size:"+futureList.size());
     }

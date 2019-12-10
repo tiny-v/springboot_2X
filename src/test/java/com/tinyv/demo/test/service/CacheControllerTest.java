@@ -1,9 +1,9 @@
-package com.tinyv.demo.business.controller;
+package com.tinyv.demo.test.service;
 
 import com.tinyv.demo.MyApps;
 import com.tinyv.demo.business.service.CacheService;
 import com.tinyv.demo.business.service.impl.CacheServiceImpl;
-import com.tinyv.demo.business.tasks.CacheTestTask;
+import com.tinyv.demo.test.tasks.CacheTestTask;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
