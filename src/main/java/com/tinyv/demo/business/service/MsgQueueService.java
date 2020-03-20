@@ -4,7 +4,7 @@ import com.alibaba.rocketmq.client.producer.SendResult;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/11/27
  */
 public interface MsgQueueService {

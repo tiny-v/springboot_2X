@@ -2,7 +2,7 @@ package com.tinyv.demo.business.service;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/11/20
  */
 public interface CacheService {

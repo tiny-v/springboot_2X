@@ -2,7 +2,7 @@ package com.tinyv.demo.global.response;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/12/5
  */
 public class CommonResponse extends BaseResponse<Object> {

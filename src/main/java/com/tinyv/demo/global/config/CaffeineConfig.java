@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Primary;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/11/19
  */
 @EnableConfigurationProperties(LocalCacheProperties.class)

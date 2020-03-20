@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/11/19
  */
 @ConfigurationProperties(prefix="spring.cache.caffeine")

@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/11/21
  */
 @ConfigurationProperties(prefix="spring.datasource",ignoreUnknownFields = true)

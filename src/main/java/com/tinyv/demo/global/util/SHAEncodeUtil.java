@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/12/10
  */
 public class SHAEncodeUtil {

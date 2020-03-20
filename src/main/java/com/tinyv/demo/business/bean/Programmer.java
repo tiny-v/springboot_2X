@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/11/8
  */
 public class Programmer implements Serializable{

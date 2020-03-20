@@ -4,7 +4,7 @@ import java.util.UUID;
 
 /**
  *
- * @author YMa69
+ * @author TinyV
  * @date 2019/11/22
  */
 public class UUIDUtils {
