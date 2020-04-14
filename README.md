@@ -12,7 +12,7 @@ springboot2 要求:
 2. MAVEN 3.2 +
 3. SpringFramework 5+
 
-本项目包括:
+本项目已包括:
 ---------------------
 
 1. 集成 Swagger, 版本: 2.8.0
