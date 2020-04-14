@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author TinyV
  * @date 2019/11/19
  */
-@Api(tags={"RestAPI Demo"}, description = " 使用SwaggerController展示常用的RestAPI规范", produces = "application/json")
+@Api(tags={"RestAPI Demo"}, produces = "application/json")
 @RestController
 @RequestMapping(value="/swagger")
 public class SwaggerController extends BaseController {

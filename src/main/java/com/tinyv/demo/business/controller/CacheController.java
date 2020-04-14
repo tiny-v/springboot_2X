@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author TinyV
  * @date 2019/11/20
  */
-@Api(tags={"Spring Cache Demo"}, description = "@Cacheable | @CachePut | @CacheEvict", produces = "application/json")
+@Api(tags={"Spring Cache Demo"}, produces = "application/json")
 @RestController
 @RequestMapping(value="/cache")
 public class CacheController extends BaseController {

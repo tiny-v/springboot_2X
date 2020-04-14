@@ -18,9 +18,9 @@ public class MsgQueueServiceImpl implements MsgQueueService {
 
     @Resource
     private DefaultMQProducer defaultMQProducer;
+
     /**
      * 发送消息
-     *
      * @param msgInfo
      */
     @Override

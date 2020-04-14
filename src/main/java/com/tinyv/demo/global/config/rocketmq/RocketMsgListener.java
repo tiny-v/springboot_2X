@@ -35,7 +35,8 @@ public class RocketMsgListener implements MessageListenerConcurrently{
         if(reConsume == msgRetryTimes){
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
-        if(messageExt.getTopic().equals("topicDemo")){
+        String topicDemo = "topicDemo";
+        if(topicDemo.equals(messageExt.getTopic())){
             String tags = messageExt.getTags() ;
             switch (tags){
                 case "tag1":

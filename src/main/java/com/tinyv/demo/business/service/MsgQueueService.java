@@ -12,6 +12,7 @@ public interface MsgQueueService {
     /**
      * 发送消息
      * @param msgInfo
+     * @return SendResult
      */
     SendResult sendMsg(String msgInfo);
 
