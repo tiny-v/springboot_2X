@@ -8,7 +8,7 @@ springboot2 要求:
 ------------------
 
 
-1. JDK 1.8 / JDK 1.9
+1. JDK 1.8 +
 2. MAVEN 3.2 +
 3. SpringFramework 5+
 
@@ -21,10 +21,16 @@ springboot2 要求:
 3. 集成 Caffeine Cache
 4. 集成 RocketMQ
 
+
+
 测试：
 ---------------------
 1. 
 2. 使用 ExecutorService 对Service层进行并发性能测试。
+
+编码规范:
+---------------------
+1. 使用Alibaba编码规约插件检查代码
 
 
 
