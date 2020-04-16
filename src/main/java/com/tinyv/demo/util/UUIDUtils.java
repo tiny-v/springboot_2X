@@ -1,4 +1,4 @@
-package com.tinyv.demo.global.util;
+package com.tinyv.demo.util;
 
 import java.util.UUID;
 
