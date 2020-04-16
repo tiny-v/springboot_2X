@@ -4,7 +4,7 @@ import com.tinyv.demo.business.bean.User;
 import com.tinyv.demo.business.service.UserService;
 import com.tinyv.demo.global.constant.ConstResponseCode;
 import com.tinyv.demo.global.response.CommonResponse;
-import com.tinyv.demo.global.util.UUIDUtils;
+import com.tinyv.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;

@@ -3,7 +3,7 @@ package com.tinyv.demo.business.service.impl;
 import com.tinyv.demo.business.bean.Programmer;
 import com.tinyv.demo.business.dao.ProgrammerDao;
 import com.tinyv.demo.business.service.ProgrammerService;
-import com.tinyv.demo.global.util.UUIDUtils;
+import com.tinyv.demo.util.UUIDUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

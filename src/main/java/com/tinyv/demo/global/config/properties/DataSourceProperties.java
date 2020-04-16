@@ -1,4 +1,4 @@
-package com.tinyv.demo.global.properties;
+package com.tinyv.demo.global.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author TinyV
  * @date 2019/11/21
  */
-@ConfigurationProperties(prefix="spring.datasource",ignoreUnknownFields = true)
+@ConfigurationProperties(prefix="spring.datasource")
 public class DataSourceProperties {
 
     private String username;

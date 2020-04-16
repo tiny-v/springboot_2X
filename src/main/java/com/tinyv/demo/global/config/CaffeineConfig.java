@@ -3,7 +3,7 @@ package com.tinyv.demo.global.config;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.RemovalCause;
 import com.tinyv.demo.global.constant.ConstGlobal;
-import com.tinyv.demo.global.properties.LocalCacheProperties;
+import com.tinyv.demo.global.config.properties.LocalCacheProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

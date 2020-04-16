@@ -3,7 +3,7 @@ package com.tinyv.demo.business.service.impl;
 import com.tinyv.demo.business.bean.User;
 import com.tinyv.demo.business.dao.UserDao;
 import com.tinyv.demo.business.service.UserService;
-import com.tinyv.demo.global.util.SHAEncodeUtil;
+import com.tinyv.demo.util.SHAEncodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
