@@ -14,13 +14,13 @@ springboot2 要求:
 
 本项目已包括:
 ---------------------
-
-1. 集成 Swagger, 版本: 2.8.0
-2. 集成 Druid 连接池
-3. 集成 Mybatis
-4. 集成 Caffeine Cache
-5. 集成 RocketMQ
-6. 集成 Redis
+<b>spring_basic: </b> 
+> 1. 集成 Swagger, 版本: 2.8.0
+> 2. 集成 Druid 连接池
+> 3. 集成 Mybatis
+> 4. 集成 Caffeine Cache
+> 5. 集成 RocketMQ
+> 6. 集成 Redis
 
 
 
