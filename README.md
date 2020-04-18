@@ -12,7 +12,7 @@ springboot2 要求:
 2. MAVEN 3.2 +
 3. SpringFramework 5+
 
-本项目已包括:
+项目已包括:
 ---------------------
 <b>spring_basic: </b> 
 > 1. 集成 Swagger, 版本: 2.8.0
@@ -26,8 +26,8 @@ springboot2 要求:
 
 测试：
 ---------------------
-1. 
-2. 使用 ExecutorService 对Service层进行并发性能测试。
+1. @RunWith(SpringRunner.class)
+2. 使用 ThreadPoolExecutor 进行并发性能测试。
 
 编码规范:
 ---------------------
