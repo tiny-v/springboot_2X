@@ -12,21 +12,22 @@ springboot2 要求:
 2. MAVEN 3.2 +
 3. SpringFramework 5+
 
-本项目包括:
+项目已包括:
 ---------------------
-
-1. 集成 Swagger, 版本: 2.8.0
-2. 集成 Druid 连接池
-2. 集成 Mybatis
-3. 集成 Caffeine Cache
-4. 集成 RocketMQ
+<b>spring_basic: </b> 
+> 1. 集成 Swagger, 版本: 2.8.0
+> 2. 集成 Druid 连接池
+> 3. 集成 Mybatis
+> 4. 集成 Caffeine Cache
+> 5. 集成 RocketMQ
+> 6. 集成 Redis
 
 
 
 测试：
 ---------------------
-1. 
-2. 使用 ExecutorService 对Service层进行并发性能测试。
+1. @RunWith(SpringRunner.class)
+2. 使用 ThreadPoolExecutor 进行并发性能测试。
 
 编码规范:
 ---------------------
