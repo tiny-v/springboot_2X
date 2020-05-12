@@ -6,25 +6,21 @@ import com.tinyv.demo.global.constant.ConstResponseCode;
 import com.tinyv.demo.global.response.CommonResponse;
 import com.tinyv.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
  * @author TinyV
  * @date 2019/12/10
  */
-@Controller(value="/user")
+@RestController(value="/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value="/register", method= RequestMethod.POST)
-    @ResponseBody
+    @PostMapping(value="/register")
     public CommonResponse register(String username, String password){
         CommonResponse commonResponse = new CommonResponse();
         if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)){

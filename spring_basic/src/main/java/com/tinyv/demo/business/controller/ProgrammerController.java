@@ -7,10 +7,7 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -28,7 +25,7 @@ public class ProgrammerController extends BaseController{
     @Autowired
     private ProgrammerService programmerService;
 
-    @RequestMapping(value="/listProgrammers", method= RequestMethod.GET)
+    @GetMapping(value="/listProgrammers")
     public CommonResponse listProgrammer(){
         List<Programmer> list = programmerService.listProgrammers();
         CommonResponse commonResponse = new CommonResponse();
@@ -37,7 +34,7 @@ public class ProgrammerController extends BaseController{
         return commonResponse;
     }
 
-    @RequestMapping(value="/insertProgrammer", method= RequestMethod.POST)
+    @PostMapping(value="/insertProgrammer")
     public void insertProgrammer(Programmer programmer){
         programmerService.insertProgrammer(programmer);
     }
