@@ -6,12 +6,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 /**
  * @author TinyV
  * @date 2019/11/8.
  */
 @SpringBootApplication
+@EnableWebSecurity
 @EnableCaching
 @MapperScan("com.tinyv.demo.business.dao")
 public class BasicApps {

@@ -22,6 +22,10 @@ springboot2 要求:
 > 5. 集成 RocketMQ
 > 6. 集成 Redis
 
+权限认证
+---------------------
+spring-security
+
 
 日志
 ---------------------
