@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     /** 使用用户名查询密码 */
-    String pwdQuery = "select user_name, pwd, avaliable from t_user where user_name = ?";
+    String pwdQuery = "select user_name, pwd, available from t_user where user_name = ?";
 
     /** 使用用户名查询角色 */
     String roleQuery = "select u.user_name, r.role_name from t_user u, t_user_role ur, t_role r "

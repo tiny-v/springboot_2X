@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CaffeineConfig {
 
-    public static Logger logger = LoggerFactory.getLogger(CaffeineConfig.class);
+    private final Logger logger = LoggerFactory.getLogger(CaffeineConfig.class);
 
     @Autowired
     public LocalCacheProperties localCacheProperties;
