@@ -2,7 +2,7 @@ package com.tinyv.demo.global.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.RemovalCause;
-import com.tinyv.demo.global.config.properties.LocalCacheProperties;
+import com.tinyv.demo.global.properties.LocalCacheProperties;
 import com.tinyv.demo.global.constant.ConstGlobal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

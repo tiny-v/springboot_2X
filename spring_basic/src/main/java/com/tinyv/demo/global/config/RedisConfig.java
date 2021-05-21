@@ -1,6 +1,6 @@
 package com.tinyv.demo.global.config;
 
-import com.tinyv.demo.global.config.properties.RedisPoolProperties;
+import com.tinyv.demo.global.properties.RedisPoolProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

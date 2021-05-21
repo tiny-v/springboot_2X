@@ -1,4 +1,4 @@
-package com.tinyv.demo.global.config.properties;
+package com.tinyv.demo.global.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
