@@ -12,7 +12,7 @@ import javax.sql.DataSource;
  * @author TinyV
  * @date 2020/5/13
  */
-@Configuration
+//@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

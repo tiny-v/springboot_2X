@@ -117,13 +117,6 @@
             <version>2.8.0</version>
         </dependency>
 
-        <!--RocketMQ-->
-        <dependency>
-            <groupId>com.alibaba.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>3.2.6</version>
-        </dependency>
-
         <!-- 热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
