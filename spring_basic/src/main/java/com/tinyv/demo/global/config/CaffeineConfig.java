@@ -14,7 +14,6 @@ import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -52,9 +51,8 @@ public class CaffeineConfig {
                 .recordStats()
                 //todo 重写该删除监听器
                 .removalListener(
-                        (String key, String value, RemovalCause cause)->{
-                            logger.info("key:"+key+" was removed, caused by:"+cause);
-                        }
+                        (String key, String value, RemovalCause cause)->
+                                logger.info("key:{} was removed, cause by:{}", key, cause)
                 );
         return caffeine;
     }
@@ -72,9 +70,8 @@ public class CaffeineConfig {
                 .recordStats()
                 //todo 重写该删除监听器
                 .removalListener(
-                        (String key, String value, RemovalCause cause)->{
-                            logger.info("key:"+key+" was removed, caused by:"+cause);
-                        }
+                        (String key, String value, RemovalCause cause)->
+                                logger.info("key:{} was removed, cause by:{}", key, cause)
                 );
         return caffeine;
     }
@@ -82,7 +79,7 @@ public class CaffeineConfig {
     @Bean(name= ConstGlobal.CACHE_MANAGER_CAFFEINE_1)
     @Primary
     public CacheManager caffeineCacheManager1(@Qualifier("cacheLoader") LocalCacheLoader localCacheLoader,
-                                             @Qualifier(ConstGlobal.CACHE_CAFFEINE_1) Caffeine caffeine){
+                                              @Qualifier(ConstGlobal.CACHE_CAFFEINE_1) Caffeine caffeine){
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
         caffeineCacheManager.setCacheLoader(localCacheLoader);
         caffeineCacheManager.setCaffeine(caffeine);
