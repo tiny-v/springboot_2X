@@ -15,7 +15,7 @@ public interface UserDao {
      * 插入数据进入User table
      * @param user
      */
-    void insertUser(User user);
+    int insertUser(User user);
 
     /**
      * 根据username, 查询user
@@ -23,5 +23,16 @@ public interface UserDao {
      * @return
      */
     User getUser(String username);
+
+
+    /**
+     * 通过Id查询用户
+     * @param id
+     * @return
+     */
+    User getUserById(String id);
+
+
+
 
 }

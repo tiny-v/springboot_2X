@@ -4,7 +4,6 @@ import com.tinyv.demo.business.bean.User;
 import com.tinyv.demo.business.bean.request.CreateUserRequest;
 import com.tinyv.demo.business.service.UserService;
 import com.tinyv.demo.global.response.BaseResponse;
-import com.tinyv.demo.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +28,10 @@ public class UserController {
         User user = User.builder()
                 .username(createUserModel.getUsername())
                 .password(createUserModel.getPassword())
-                .UUID(UUIDUtils.getUUID32())
+                .description(createUserModel.getDescription())
+                .nickname(createUserModel.getNickname())
+                .telephone(createUserModel.getTelephone())
+                .email(createUserModel.getEmail())
                 .build();
         userService.register(user);
         return BaseResponse.builder().build();

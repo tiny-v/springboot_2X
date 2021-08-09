@@ -4,6 +4,7 @@ import com.tinyv.demo.business.bean.User;
 import com.tinyv.demo.business.dao.UserDao;
 import com.tinyv.demo.business.service.UserService;
 import com.tinyv.demo.util.SHAEncodeUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +20,17 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
 
     /**
-     * 通过username查询user
+     * userId
      *
-     * @param username
+     * @param userId
      * @return
      */
     @Override
-    public User getUser(String username) {
-        return userDao.getUser(username);
+    public User getUserById(String userId) {
+        if(StringUtils.isBlank(userId)){
+            return null;
+        }
+        return userDao.getUserById(userId);
     }
 
     /**
@@ -35,10 +39,18 @@ public class UserServiceImpl implements UserService{
      * @param user
      */
     @Override
-    public void register(User user) {
-        String pwd = SHAEncodeUtil.shaEncode(user.getUsername());
-        user.setPassword(pwd);
-        userDao.insertUser(user);
+    public int register(User user) {
+        if(user == null){
+            return 0;
+        }
+        // 密码加密
+        if(StringUtils.isNotBlank(user.getPassword())){
+            user.setPassword(SHAEncodeUtil.shaEncode(user.getPassword()));
+        }
+        return userDao.insertUser(user);
     }
+
+
+
 
 }

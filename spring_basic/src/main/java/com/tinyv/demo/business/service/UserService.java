@@ -10,16 +10,16 @@ import com.tinyv.demo.business.bean.User;
 public interface UserService {
 
     /**
-     * 通过username查询user
-     * @param username
+     * userId
+     * @param userId
      * @return
      */
-    User getUser(String username);
+    User getUserById(String userId);
 
     /**
      * 用户注册
      * @param user
      */
-    void register(User user);
+    int register(User user);
 
 }
