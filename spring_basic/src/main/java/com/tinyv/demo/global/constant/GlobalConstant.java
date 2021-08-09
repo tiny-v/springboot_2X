@@ -5,7 +5,7 @@ package com.tinyv.demo.global.constant;
  * @author TinyV
  * @date 2019/11/8
  */
-public class ConstGlobal {
+public class GlobalConstant {
 
     public static final String CACHE_MANAGER_CAFFEINE_1 = "Caffeine_Cache_Manager_1";
     public static final String CACHE_MANAGER_CAFFEINE_2 = "Caffeine_Cache_Manager_2";

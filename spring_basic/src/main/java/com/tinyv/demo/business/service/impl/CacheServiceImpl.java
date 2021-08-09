@@ -4,7 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.stats.CacheStats;
 import com.tinyv.demo.business.service.CacheService;
-import com.tinyv.demo.global.constant.ConstGlobal;
+import com.tinyv.demo.global.constant.GlobalConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class CacheServiceImpl implements CacheService{
      * 属性：key | value | condition
      * @param cacheableTagId
      */
-    @Cacheable(value="cache", cacheManager = ConstGlobal.CACHE_MANAGER_CAFFEINE_1)
+    @Cacheable(value="cache", cacheManager = GlobalConstant.CACHE_MANAGER_CAFFEINE_1)
     @Override
     public String cacheableDemo(String cacheableTagId) {
         logger.info("====== step into method[cacheableDemo] ======");
@@ -52,7 +52,7 @@ public class CacheServiceImpl implements CacheService{
      * 属性：key | value | condition
      * @param cachePutTagId
      */
-    @CachePut(value="cache", cacheManager = ConstGlobal.CACHE_MANAGER_CAFFEINE_1)
+    @CachePut(value="cache", cacheManager = GlobalConstant.CACHE_MANAGER_CAFFEINE_1)
     @Override
     public String cachePutDemo(String cachePutTagId) {
         logger.info("====== step into method[cachePutDemo] ======");
@@ -70,7 +70,7 @@ public class CacheServiceImpl implements CacheService{
      * 属性：key | value | condition | allEntries(是否清除所有entry, default:false) | beforeInvocation(是否在方法执行前就清除缓存, default:false)
      * @param cacheEvictTagId
      */
-    @CacheEvict(value="cache", cacheManager = ConstGlobal.CACHE_MANAGER_CAFFEINE_1)
+    @CacheEvict(value="cache", cacheManager = GlobalConstant.CACHE_MANAGER_CAFFEINE_1)
     @Override
     public String cacheEvictDemo(String cacheEvictTagId) {
         logger.info("====== step into method[cacheEvictDemo] ======");

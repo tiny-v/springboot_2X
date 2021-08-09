@@ -1,9 +1,10 @@
-package com.tinyv.demo.global.config;
+package com.tinyv.demo.global.config.caffine;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.RemovalCause;
+import com.tinyv.demo.global.config.LocalCacheLoader;
 import com.tinyv.demo.global.config.properties.LocalCacheProperties;
-import com.tinyv.demo.global.constant.ConstGlobal;
+import com.tinyv.demo.global.constant.GlobalConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class CaffeineConfig {
         return new LocalCacheLoader();
     }
 
-    @Bean(name= ConstGlobal.CACHE_CAFFEINE_1)
+    @Bean(name= GlobalConstant.CACHE_CAFFEINE_1)
     @Primary
     public Caffeine caffeine1(){
         Caffeine caffeine = Caffeine.newBuilder()
@@ -57,7 +58,7 @@ public class CaffeineConfig {
         return caffeine;
     }
 
-    @Bean(name= ConstGlobal.CACHE_CAFFEINE_2)
+    @Bean(name= GlobalConstant.CACHE_CAFFEINE_2)
     public Caffeine caffeine2(){
         Caffeine caffeine = Caffeine.newBuilder()
                 // 初始化大小
@@ -76,18 +77,18 @@ public class CaffeineConfig {
         return caffeine;
     }
 
-    @Bean(name= ConstGlobal.CACHE_MANAGER_CAFFEINE_1)
+    @Bean(name= GlobalConstant.CACHE_MANAGER_CAFFEINE_1)
     @Primary
     public CacheManager caffeineCacheManager1(@Qualifier("cacheLoader") LocalCacheLoader localCacheLoader,
-                                              @Qualifier(ConstGlobal.CACHE_CAFFEINE_1) Caffeine caffeine){
+                                              @Qualifier(GlobalConstant.CACHE_CAFFEINE_1) Caffeine caffeine){
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
         caffeineCacheManager.setCacheLoader(localCacheLoader);
         caffeineCacheManager.setCaffeine(caffeine);
         return caffeineCacheManager;
     }
 
-    @Bean(name= ConstGlobal.CACHE_MANAGER_CAFFEINE_2)
-    public CacheManager caffeineCacheManager2(@Qualifier(ConstGlobal.CACHE_CAFFEINE_2) Caffeine caffeine){
+    @Bean(name= GlobalConstant.CACHE_MANAGER_CAFFEINE_2)
+    public CacheManager caffeineCacheManager2(@Qualifier(GlobalConstant.CACHE_CAFFEINE_2) Caffeine caffeine){
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
         caffeineCacheManager.setCaffeine(caffeine);
         return caffeineCacheManager;

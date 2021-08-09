@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService{
         String pwd = SHAEncodeUtil.shaEncode(user.getUsername());
         user.setPassword(pwd);
         userDao.insertUser(user);
-
     }
 
 }

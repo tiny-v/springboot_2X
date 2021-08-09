@@ -1,5 +1,8 @@
 package com.tinyv.demo.business.bean;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import java.io.Serializable;
 
 /**
@@ -7,6 +10,9 @@ import java.io.Serializable;
  * @author TinyV
  * @date 2019/12/10
  */
+@Getter
+@Setter
+@Builder
 public class User implements Serializable{
 
     private String UUID;
@@ -21,27 +27,4 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public String getUUID() {
-        return UUID;
-    }
-
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
