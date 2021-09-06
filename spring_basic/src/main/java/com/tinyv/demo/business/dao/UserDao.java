@@ -2,6 +2,7 @@ package com.tinyv.demo.business.dao;
 
 import com.tinyv.demo.business.bean.User;
 import org.springframework.stereotype.Repository;
+import java.util.HashMap;
 
 /**
  *
@@ -31,6 +32,14 @@ public interface UserDao {
      * @return
      */
     User getUserById(String id);
+
+
+    /**
+     * 通过Id查询用户
+     * @param id
+     * @return
+     */
+    HashMap getUserMapById(String id);
 
 
 

@@ -39,7 +39,7 @@ public class StationClient {
                     });
             System.out.println("客户端准备就绪，随时可以起飞~");
             //连接服务端
-            ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 5443).sync();
+            ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 8080).sync();
             //
             channelFuture.addListener((ChannelFutureListener) future -> {
                 if(future.isSuccess()){

@@ -17,6 +17,11 @@ import java.util.Date;
 @Builder
 public class User implements Serializable{
 
+    /** 类型 */
+    public enum UserType{
+        Singer, Programmer, Dreamer
+    }
+
     private String id;
     /** 用户名 */
     private String username;
@@ -31,7 +36,7 @@ public class User implements Serializable{
     /** 电话 **/
     private String telephone;
     /** 类型 **/
-    private String type;
+    private UserType type;
     /** 是否启用 **/
     private Boolean isEnabled;
     /** 是否被删除 **/

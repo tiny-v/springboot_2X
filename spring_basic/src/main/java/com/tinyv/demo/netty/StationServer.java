@@ -45,7 +45,7 @@ public class StationServer {
         //绑定端口号，启动服务端
         ChannelFuture channelFuture = null;
         try {
-            channelFuture = serverBootstrap.bind(5443).sync();
+            channelFuture = serverBootstrap.bind(8080).sync();
             //对关闭通道进行监听
             channelFuture.channel().closeFuture().sync();
 

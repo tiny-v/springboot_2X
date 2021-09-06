@@ -7,6 +7,7 @@ import com.tinyv.demo.util.SHAEncodeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.HashMap;
 
 /**
  *
@@ -34,12 +35,24 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
+     * @param userId
+     * @return
+     */
+    @Override
+    public HashMap getUserMapById(String userId) {
+        if(StringUtils.isBlank(userId)){
+            return null;
+        }
+        return userDao.getUserMapById(userId);
+    }
+
+    /**
      * 用户注册
      *
      * @param user
      */
     @Override
-    public int register(User user) {
+    public int insertUser(User user) {
         if(user == null){
             return 0;
         }

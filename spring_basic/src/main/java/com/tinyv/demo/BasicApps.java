@@ -26,8 +26,8 @@ public class BasicApps {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BasicApps.class, args);
-        StationServer stationServer = (StationServer)context.getBeanFactory().getBean("stationServer");
-        stationServer.initServerBootStrap();
+        /*StationServer stationServer = (StationServer)context.getBeanFactory().getBean("stationServer");
+        stationServer.initServerBootStrap();*/
     }
 
 }

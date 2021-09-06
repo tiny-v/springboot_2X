@@ -2,6 +2,8 @@ package com.tinyv.demo.business.service;
 
 import com.tinyv.demo.business.bean.User;
 
+import java.util.HashMap;
+
 /**
  *
  * @author TinyV
@@ -10,16 +12,24 @@ import com.tinyv.demo.business.bean.User;
 public interface UserService {
 
     /**
+     * 用户注册
+     * @param user
+     */
+    int insertUser(User user);
+
+
+    /**
      * userId
      * @param userId
      * @return
      */
     User getUserById(String userId);
 
+
     /**
-     * 用户注册
-     * @param user
+     * @param userId
+     * @return
      */
-    int register(User user);
+    HashMap getUserMapById(String userId);
 
 }
