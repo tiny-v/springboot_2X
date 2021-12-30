@@ -42,9 +42,11 @@ public class RedisConfig {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(poolConfig);
         // 获取单机配置
         RedisStandaloneConfiguration rsc = jedisConnectionFactory.getStandaloneConfiguration();
-        rsc.setHostName(redisPoolProperties.getHost());
-        rsc.setPort(redisPoolProperties.getPort());
-        rsc.setPassword(redisPoolProperties.getPassword());
+        if(rsc!=null){
+            rsc.setHostName(redisPoolProperties.getHost());
+            rsc.setPort(redisPoolProperties.getPort());
+            rsc.setPassword(redisPoolProperties.getPassword());
+        }
         this.connectionFactory = jedisConnectionFactory;
         return connectionFactory;
     }

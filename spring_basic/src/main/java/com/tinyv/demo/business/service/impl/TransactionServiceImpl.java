@@ -21,12 +21,13 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     private TransactionService2 transactionService2;
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void parent(){
         scenario();
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    //@Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void scenario(){
         userDao.insertUser(buildUser("userA"));
@@ -55,7 +56,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .username(userName)
                 .password("Pwd")
                 .nickname("nickName")
-                .type(User.UserType.Singer)
+                .type(User.UserType.SINGER)
                 .isEnabled(Boolean.TRUE)
                 .build();
     }

@@ -34,7 +34,7 @@ public class TransactionService2Impl implements TransactionService2 {
                 .username(userName)
                 .password("Pwd")
                 .nickname("nickName")
-                .type(User.UserType.Singer)
+                .type(User.UserType.SINGER)
                 .isEnabled(Boolean.TRUE)
                 .build();
     }

@@ -1,7 +1,5 @@
 package com.tinyv.demo.global.exception;
 
-import com.tinyv.demo.global.constant.GlobalErrorCode;
-
 import java.util.Map;
 
 
@@ -19,29 +17,6 @@ public class CommonException extends RuntimeException{
     private int status;
     /** 参数 */
     private Map<String, ?> params;
-
-    public CommonException(){
-        super();
-    };
-
-    public CommonException(Throwable t){
-        super(t);
-        this.message = t.getMessage();
-        this.code = GlobalErrorCode.InternalError.getErrorCode();
-        this.status = GlobalErrorCode.InternalError.getHttpStatus().value();
-    }
-
-    public CommonException(GlobalErrorCode responseCode){
-        this.status = responseCode.getHttpStatus().value();
-        this.code = responseCode.getErrorCode();
-        this.message = responseCode.getErrorMsg();
-    }
-
-    public CommonException(GlobalErrorCode responseCode, Map<String, ?> params){
-        this.status = responseCode.getHttpStatus().value();
-        this.code = responseCode.getErrorCode();
-        this.message =ErrorMessageConvertor.getMessage(responseCode.getErrorMsg(), params);;
-    }
 
     public CommonException(int status, String code, String message){
         this.status = status;

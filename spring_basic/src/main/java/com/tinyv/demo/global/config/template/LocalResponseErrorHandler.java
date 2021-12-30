@@ -1,7 +1,6 @@
-package com.tinyv.demo.global.config.restTemplate;
+package com.tinyv.demo.global.config.template;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tinyv.demo.business.controller.CacheController;
 import com.tinyv.demo.global.constant.GlobalErrorCode;
 import com.tinyv.demo.global.exception.CommonException;
 import com.tinyv.demo.global.response.BaseResponse;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
@@ -22,7 +22,7 @@ import java.util.Map;
 @Component
 public class LocalResponseErrorHandler extends DefaultResponseErrorHandler {
 
-    private Logger logger = LoggerFactory.getLogger(CacheController.class);
+    private Logger logger = LoggerFactory.getLogger(LocalResponseErrorHandler.class);
 
     @Autowired
     ObjectMapper objectMapper;
@@ -39,7 +39,7 @@ public class LocalResponseErrorHandler extends DefaultResponseErrorHandler {
         if (null != getCharset(response)) {
             body = new String(getResponseBody(response), getCharset(response));
         } else {
-            Charset cs = Charset.forName("UTF-8");
+            Charset cs = Charset.forName(StandardCharsets.UTF_8.name());
             body = new String(getResponseBody(response), cs);
         }
         try {
@@ -51,7 +51,7 @@ public class LocalResponseErrorHandler extends DefaultResponseErrorHandler {
             }
         } catch (IOException e) {
             logger.error("cannot find BaseResponse from response body", e);
-            throw new CommonException(GlobalErrorCode.InternalError.getHttpStatus().value(), GlobalErrorCode.InternalError.getErrorCode(), body);
+            throw new CommonException(GlobalErrorCode.INTERNAL_ERROR.getHttpStatus().value(), GlobalErrorCode.INTERNAL_ERROR.getErrorCode(), body);
         }
 
     }

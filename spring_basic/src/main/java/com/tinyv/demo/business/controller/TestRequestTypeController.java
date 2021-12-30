@@ -3,6 +3,8 @@ package com.tinyv.demo.business.controller;
 import com.tinyv.demo.business.bean.request.TestRequestTypeA;
 import com.tinyv.demo.business.bean.request.TestRequestTypeB;
 import io.swagger.annotations.Api;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,29 +19,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value="/test")
 public class TestRequestTypeController {
 
+    private static final Logger logger = LoggerFactory.getLogger(TestRequestTypeController.class) ;
 
     /**
      * @param testRequest
      * @return
      */
-    @RequestMapping(value="/testParam1", method= RequestMethod.POST)
+    @PostMapping(value="/testParam1")
     @ResponseBody
     public void testParam1(@RequestBody TestRequestTypeA testRequest){
-        System.out.println(testRequest.getA() + "," + testRequest.getA().getClass());
-        System.out.println(testRequest.getB() + "," + testRequest.getA().getClass());
-        System.out.println(testRequest.getC() + "," + testRequest.getA().getClass());
+        logger.info("testRequest.getA:[{}], testRequest.getA.getClass:[{}]", testRequest.getA(), testRequest.getA().getClass());
+        logger.info("testRequest.getB:[{}], testRequest.getA.getClass:[{}]", testRequest.getB(), testRequest.getA().getClass());
+        logger.info("testRequest.getC:[{}], testRequest.getA.getClass:[{}]", testRequest.getC(), testRequest.getA().getClass());
     }
 
     /**
      * @param testRequest
      * @return
      */
-    @RequestMapping(value="/testParam2", method= RequestMethod.POST)
+    @PostMapping(value="/testParam2")
     @ResponseBody
     public void testParam2(@RequestBody TestRequestTypeB testRequest){
-        System.out.println(testRequest.getA() + "," + testRequest.getA().getClass());
-        System.out.println(testRequest.getB() + "," + testRequest.getA().getClass());
-        System.out.println(testRequest.getC() + "," + testRequest.getA().getClass());
+        logger.info("testRequest.getA:[{}], testRequest.getA.getClass:[{}]", testRequest.getA(), testRequest.getA().getClass());
+        logger.info("testRequest.getB:[{}], testRequest.getA.getClass:[{}]", testRequest.getB(), testRequest.getA().getClass());
+        logger.info("testRequest.getC:[{}], testRequest.getA.getClass:[{}]", testRequest.getC(), testRequest.getA().getClass());
     }
 
 }

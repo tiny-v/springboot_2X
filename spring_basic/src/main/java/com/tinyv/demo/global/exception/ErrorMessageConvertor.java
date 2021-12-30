@@ -12,12 +12,12 @@ import java.util.regex.Pattern;
  */
 public class ErrorMessageConvertor {
 
-    private static Map<String, String> CODE_MESSAGE_MAPPING;
+    private static Map<String, String> codeMessageMapping;
 
     private static final Pattern PATTERN = Pattern.compile("\\$\\{\\w*\\}");
 
     public static String getMessage(String source, Map<String, ?> params) {
-        return build(CODE_MESSAGE_MAPPING.getOrDefault(source, source), params);
+        return build(codeMessageMapping.getOrDefault(source, source), params);
     }
 
     /**

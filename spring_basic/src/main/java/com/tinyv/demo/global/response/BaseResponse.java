@@ -29,7 +29,7 @@ public class BaseResponse<T> implements Serializable {
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date = new Date();
 
-    public static <T> BaseResponse.BaseResponseBuilder<T> builder() {
+    public static BaseResponse.BaseResponseBuilder builder() {
         return new BaseResponse.BaseResponseBuilder();
     }
 

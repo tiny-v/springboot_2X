@@ -24,9 +24,8 @@ public class UserController {
      * @param createUserModel
      * @return
      */
-    @RequestMapping(value="/register", method= RequestMethod.POST)
-    @ResponseBody
-    public BaseResponse register(@RequestBody CreateUserRequest createUserModel){
+    @PostMapping(value="/register")
+    public void register(@RequestBody CreateUserRequest createUserModel){
         User user = User.builder()
                 .username(createUserModel.getUsername())
                 .password(createUserModel.getPassword())
@@ -36,14 +35,13 @@ public class UserController {
                 .email(createUserModel.getEmail())
                 .build();
         userService.insertUser(user);
-        return BaseResponse.builder().build();
     }
 
     /**
      * @param userId
      * @return
      */
-    @RequestMapping(value="/getUser", method= RequestMethod.GET)
+    @GetMapping(value="/getUser")
     @ResponseBody
     public BaseResponse<User> getUser(@RequestParam String userId){
         BaseResponse.BaseResponseBuilder<User> builder = BaseResponse.builder();

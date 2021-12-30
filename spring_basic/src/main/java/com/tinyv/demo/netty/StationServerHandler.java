@@ -27,7 +27,7 @@ public class StationServerHandler extends ChannelInboundHandlerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(StationServerHandler.class);
 
-    public  static ConcurrentMap<String, ChannelHandlerContext> ctxMap = new ConcurrentHashMap<>();
+    protected  static ConcurrentMap<String, ChannelHandlerContext> ctxMap = new ConcurrentHashMap<>();
 
     private AtomicInteger receiveCount = new AtomicInteger();
 
@@ -65,8 +65,8 @@ public class StationServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         //获取客户端发送过来的消息
         ByteBuf byteBuf = (ByteBuf) msg;
-        logger.info("收到客户端:{} 发送的消息, count:{}", ctx.channel().remoteAddress(), receiveCount.addAndGet(1));
-        logger.info("消息内容：{}", byteBuf.toString(CharsetUtil.UTF_8));
+        logger.info("收到客户端:[{}] 发送的消息, count:[{}]", ctx.channel().remoteAddress(), receiveCount.addAndGet(1));
+        logger.info("消息内容：[{}]", byteBuf.toString(CharsetUtil.UTF_8));
     }
 
     //通道读取数据完毕事件

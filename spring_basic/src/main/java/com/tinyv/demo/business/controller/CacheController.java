@@ -8,8 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags={"Spring Cache Demo"}, produces = "application/json")
 @RestController
 @RequestMapping(value="/cache")
-public class CacheController extends BaseController {
+public class CacheController {
 
     private Logger logger = LoggerFactory.getLogger(CacheController.class);
 
@@ -34,12 +34,12 @@ public class CacheController extends BaseController {
      */
     @ApiOperation(value="[@Cacheable]")
     @ApiImplicitParams(value={@ApiImplicitParam(name="cacheableTagId", value = "")})
-    @RequestMapping(value="/cacheable", method= RequestMethod.GET)
+    @GetMapping(value="/cacheable")
     public String cacheableDemo(String cacheableTagId){
         long startMill = System.currentTimeMillis();
         String result = cacheService.cacheableDemo(cacheableTagId);
         long endMill = System.currentTimeMillis();
-        logger.info("===== Cacheable total cost:"+(endMill-startMill));
+        logger.info("===== Cacheable total cost:[{}]", (endMill-startMill));
         return result;
     }
 
@@ -50,12 +50,12 @@ public class CacheController extends BaseController {
      */
     @ApiOperation(value="[@CachePut]")
     @ApiImplicitParams(value={@ApiImplicitParam(name="cachePutTagId", value = "")})
-    @RequestMapping(value="/cachePut", method= RequestMethod.GET)
+    @GetMapping(value="/cachePut")
     public String cachePutDemo(String cachePutTagId){
         long startMill = System.currentTimeMillis();
         String result = cacheService.cachePutDemo(cachePutTagId);
         long endMill = System.currentTimeMillis();
-        logger.info("===== CachePut total cost:"+(endMill-startMill));
+        logger.info("===== CachePut total cost:[{}]", (endMill-startMill));
         return result;
     }
 
@@ -66,17 +66,17 @@ public class CacheController extends BaseController {
      */
     @ApiOperation(value="[@CacheEvict]")
     @ApiImplicitParams(value={@ApiImplicitParam(name="cacheEvictTagId", value = "")})
-    @RequestMapping(value="/cacheEvict", method= RequestMethod.GET)
+    @GetMapping(value="/cacheEvict")
     public String cacheEvictDemo(String cacheEvictTagId){
         long startMill = System.currentTimeMillis();
         String result = cacheService.cacheEvictDemo(cacheEvictTagId);
         long endMill = System.currentTimeMillis();
-        logger.info("===== CacheEvict total cost:"+(endMill-startMill));
+        logger.info("===== CacheEvict total cost:[{}]", (endMill-startMill));
         return result;
     }
 
     @ApiOperation(value="[showCacheRecordStats]")
-    @RequestMapping(value="/recordStats", method= RequestMethod.GET)
+    @GetMapping(value="/recordStats")
     public void showCacheRecordStats(){
         cacheService.showCacheRecordStats();
     }

@@ -23,10 +23,10 @@ public class CacheServiceImpl implements CacheService{
 
     private static Logger logger = LoggerFactory.getLogger(CacheServiceImpl.class);
 
-    private static final long SLEEP_TIME = 5*1000;
+    private static final long SLEEP_TIME = 5*1000L;
 
     @Autowired
-    private Caffeine cacheCaffeine;
+    private Caffeine<String, String> cacheCaffeine;
 
     /**
      * 注解：@Cacheable Demo
@@ -41,7 +41,8 @@ public class CacheServiceImpl implements CacheService{
         try{
             Thread.sleep(SLEEP_TIME);
         }catch (InterruptedException e){
-            logger.info("method[cacheableDemo]:"+e.getMessage());
+            logger.info("method[cacheableDemo] error.", e);
+            Thread.currentThread().interrupt();
         }
         return cacheableTagId+System.currentTimeMillis();
     }
@@ -59,7 +60,8 @@ public class CacheServiceImpl implements CacheService{
         try{
             Thread.sleep(SLEEP_TIME);
         }catch (InterruptedException e){
-            logger.info("method[cachePutDemo]:"+e.getMessage());
+            logger.info("method[cachePutDemo] error.", e);
+            Thread.currentThread().interrupt();
         }
         return cachePutTagId+System.currentTimeMillis();
     }
@@ -77,19 +79,20 @@ public class CacheServiceImpl implements CacheService{
         try{
             Thread.sleep(SLEEP_TIME);
         }catch (InterruptedException e){
-            logger.info("method[cacheEvictDemo]:"+e.getMessage());
+            logger.info("method[cacheEvictDemo] error.", e);
+            Thread.currentThread().interrupt();
         }
         return cacheEvictTagId+System.currentTimeMillis();
     }
 
     @Override
     public void showCacheRecordStats() {
-        Cache cache = cacheCaffeine.build();
+        Cache<String, String> cache = cacheCaffeine.build();
         CacheStats cacheStats = cache.stats();
-        logger.info("averageLoadPenalty:"+cacheStats.averageLoadPenalty());
-        logger.info("hitCount:"+cacheStats.hitCount());
-        logger.info("hitRate:"+cacheStats.hitRate());
-        logger.info("evictionCount:"+cacheStats.evictionCount());
+        logger.info("averageLoadPenalty:[{}]", cacheStats.averageLoadPenalty());
+        logger.info("hitCount:[{}]", cacheStats.hitCount());
+        logger.info("hitRate:[{}]", cacheStats.hitRate());
+        logger.info("evictionCount:[{}]", cacheStats.evictionCount());
     }
 
 }

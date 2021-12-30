@@ -34,7 +34,6 @@ public class ProgrammerControllerTest {
 
     @Test
     public void test1() throws InterruptedException{
-
         Programmer programmer = null;
         ArrayList<Callable<String>> list = new ArrayList<>();
         for(int i=0; i<5000; i++){

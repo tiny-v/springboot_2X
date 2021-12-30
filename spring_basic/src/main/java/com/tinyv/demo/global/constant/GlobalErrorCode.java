@@ -11,14 +11,14 @@ public enum GlobalErrorCode {
 
     /**************************************** 内部错误 *****************************************/
 
-    InternalError(HttpStatus.INTERNAL_SERVER_ERROR, "InternalCode", "server has internal error"),
+    INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "InternalCode", "server has internal error"),
 
     /**************************************** 用户异常错误码 *****************************************/
 
     /** 注册信息不合法 */
-    RegisterInfoIllegal(HttpStatus.BAD_REQUEST, "RegisterError.InvalidRegisterInfo", "register info error"),
+    REGISTER_INFO_ILLEGAL(HttpStatus.BAD_REQUEST, "RegisterError.InvalidRegisterInfo", "register info error"),
     /** 用户名已存在 */
-    UserNameExist(HttpStatus.BAD_REQUEST, "RegisterError.UserNameExist", "the user name already exist");
+    USER_NAME_EXIST(HttpStatus.BAD_REQUEST, "RegisterError.UserNameExist", "the user name already exist");
 
     /** 错误状态码 */
     HttpStatus httpStatus;

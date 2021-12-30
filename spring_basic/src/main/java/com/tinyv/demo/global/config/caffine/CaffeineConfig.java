@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CaffeineConfig {
 
-    public static Logger logger = LoggerFactory.getLogger(CaffeineConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(CaffeineConfig.class);
 
     @Autowired
     public LocalCacheProperties localCacheProperties;
@@ -38,8 +38,8 @@ public class CaffeineConfig {
 
     @Bean(name= GlobalConstant.CACHE_CAFFEINE_1)
     @Primary
-    public Caffeine caffeine1(){
-        Caffeine caffeine = Caffeine.newBuilder()
+    public Caffeine<String, Object> caffeine1(){
+        return Caffeine.newBuilder()
                 // 初始化大小
                 .initialCapacity(localCacheProperties.getInitialCapacity())
                 // 最大容量
@@ -50,17 +50,15 @@ public class CaffeineConfig {
                 .refreshAfterWrite(localCacheProperties.getRefreshAfterWrite(), TimeUnit.MINUTES)
                 // 记录状态
                 .recordStats()
-                //todo 重写该删除监听器
                 .removalListener(
-                        (String key, String value, RemovalCause cause)->
+                        (String key, Object value, RemovalCause cause)->
                                 logger.info("key:{} was removed, cause by:{}", key, cause)
                 );
-        return caffeine;
     }
 
     @Bean(name= GlobalConstant.CACHE_CAFFEINE_2)
-    public Caffeine caffeine2(){
-        Caffeine caffeine = Caffeine.newBuilder()
+    public Caffeine<String, Object> caffeine2(){
+        return Caffeine.newBuilder()
                 // 初始化大小
                 .initialCapacity(localCacheProperties.getInitialCapacity())
                 // 最大权重
@@ -69,12 +67,10 @@ public class CaffeineConfig {
                 .expireAfterAccess(localCacheProperties.getExpireAfterAccess(), TimeUnit.MINUTES)
                 // 记录状态
                 .recordStats()
-                //todo 重写该删除监听器
                 .removalListener(
-                        (String key, String value, RemovalCause cause)->
+                        (String key, Object value, RemovalCause cause)->
                                 logger.info("key:{} was removed, cause by:{}", key, cause)
                 );
-        return caffeine;
     }
 
     @Bean(name= GlobalConstant.CACHE_MANAGER_CAFFEINE_1)

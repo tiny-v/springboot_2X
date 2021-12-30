@@ -21,7 +21,7 @@ public class User implements Serializable{
 
     /** 类型 */
     public enum UserType{
-        Singer, Programmer, Dreamer
+        SINGER, PROGRAMMER, DREAMER
     }
 
     private String id;

@@ -8,6 +8,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class StationServer {
+
+    private static final Logger logger = LoggerFactory.getLogger(StationServer.class) ;
+
 
     public void initServerBootStrap(){
         /**
@@ -50,7 +55,8 @@ public class StationServer {
             channelFuture.channel().closeFuture().sync();
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.warn("error occurs.", e);
+            Thread.currentThread().interrupt();
         }finally {
             //优雅的关闭eventLoopGroup, 释放掉所有的资源，包括创建的线程
             parentGroup.shutdownGracefully();

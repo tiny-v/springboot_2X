@@ -11,7 +11,7 @@ public class Programmer implements Serializable{
 
     public static final Long serialVersionUID = 1L;
 
-    private String UUID;
+    private String uuid;
 
     private int num;
 
@@ -19,12 +19,12 @@ public class Programmer implements Serializable{
 
     private String description;
 
-    public String getUUID() {
-        return UUID;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public int getNum() {

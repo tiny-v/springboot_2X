@@ -34,7 +34,7 @@ public class UserServiceTest {
                 .nickname("SchoolMaster")
                 .password("123456")
                 .description("classical")
-                .type(User.UserType.Singer)
+                .type(User.UserType.SINGER)
                 .email("tyl@163.com")
                 .telephone("0321-89877632")
                 .build();
@@ -45,12 +45,12 @@ public class UserServiceTest {
     @Test
     public void testGetUserById(){
         User user = userService.getUserById("1");
-        Assert.assertEquals(User.UserType.Singer, user.getType());
+        Assert.assertEquals(User.UserType.SINGER, user.getType());
     }
 
     @Test
     public void getGetUserMapById(){
         HashMap<String, User> map = userService.getUserMapById("1");
-        logger.info("map size:{}", map.size());
+        Assert.assertEquals(1, map.size());
     }
 }

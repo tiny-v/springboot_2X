@@ -21,7 +21,7 @@ public class RocketMsgListener implements MessageListenerConcurrently{
 
     private static final Logger logger = LoggerFactory.getLogger(RocketMsgListener.class) ;
 
-    private final int msgRetryTimes = 3;
+    private static final int RETRY_TIMES = 3;
 
     @Override
     public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
@@ -29,22 +29,19 @@ public class RocketMsgListener implements MessageListenerConcurrently{
             logger.info("所有的消息都消费完了");
         }
         MessageExt messageExt = list.get(0);
-        logger.info("接受到的消息为："+new String(messageExt.getBody()));
+        logger.info("接受到的消息为：[{}]", new String(messageExt.getBody()));
         int reConsume = messageExt.getReconsumeTimes();
         // 消息已经重试了3次，如果不需要再次消费，则返回成功
-        if(reConsume == msgRetryTimes){
+        if(reConsume == RETRY_TIMES){
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
         String topicDemo = "topicDemo";
         if(topicDemo.equals(messageExt.getTopic())){
             String tags = messageExt.getTags() ;
-            switch (tags){
-                case "tag1":
-                    logger.info("开户 tag == >>"+tags);
-                    break;
-                default:
-                    logger.info("未匹配到Tag == >>"+tags);
-                    break;
+            if(("tag1").equalsIgnoreCase(tags)){
+                logger.info("开户 tag:[{}]", tags);
+            }else{
+                logger.info("未匹配到Tag:[{}]", tags);
             }
         }
         // 消息消费成功

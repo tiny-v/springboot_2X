@@ -7,9 +7,8 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -20,21 +19,22 @@ import java.util.List;
 @Api()
 @RestController
 @RequestMapping("/programmer")
-public class ProgrammerController extends BaseController{
+public class ProgrammerController {
 
     private Logger logger = LoggerFactory.getLogger(ProgrammerController.class);
 
     @Autowired
     private ProgrammerService programmerService;
 
-    @RequestMapping(value="/listProgrammers", method= RequestMethod.GET)
+    @GetMapping(value="/listProgrammers")
     public BaseResponse<List<Programmer>> listProgrammer(){
+        logger.info("== list programmer ==");
         List<Programmer> list = programmerService.listProgrammers();
         BaseResponse.BaseResponseBuilder<List<Programmer>> builder = BaseResponse.builder();
         return builder.data(list).build();
     }
 
-    @RequestMapping(value="/insertProgrammer", method= RequestMethod.POST)
+    @PostMapping(value="/insertProgrammer")
     public void insertProgrammer(Programmer programmer){
         programmerService.insertProgrammer(programmer);
     }

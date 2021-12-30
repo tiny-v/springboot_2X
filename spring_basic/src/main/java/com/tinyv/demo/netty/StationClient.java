@@ -23,21 +23,8 @@ public class StationClient {
     public void initClient(){
         NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
         try {
-            //创建bootstrap对象，配置参数
-            Bootstrap bootstrap = new Bootstrap();
-            //设置线程组
-            bootstrap.group(eventExecutors)
-                    //设置客户端的通道实现类型
-                    .channel(NioSocketChannel.class)
-                    //使用匿名内部类初始化通道
-                    .handler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
-                            //添加客户端通道的处理器
-                            ch.pipeline().addLast(new StationClientHandler());
-                        }
-                    });
-            System.out.println("客户端准备就绪，随时可以起飞~");
+            Bootstrap bootstrap = setBootStrap(eventExecutors);
+            logger.info("客户端准备就绪，随时可以起飞~");
             //连接服务端
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 8080).sync();
             //
@@ -51,11 +38,30 @@ public class StationClient {
             //对通道关闭进行监听
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error("error occurs.", e);
+            Thread.currentThread().interrupt();
         } finally {
             //关闭线程组
             eventExecutors.shutdownGracefully();
         }
+    }
+
+    private Bootstrap setBootStrap(NioEventLoopGroup eventExecutors){
+        //创建bootstrap对象，配置参数
+        Bootstrap bootstrap = new Bootstrap();
+        //设置线程组
+        bootstrap.group(eventExecutors)
+                //设置客户端的通道实现类型
+                .channel(NioSocketChannel.class)
+                //使用匿名内部类初始化通道
+                .handler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel ch) throws Exception {
+                        //添加客户端通道的处理器
+                        ch.pipeline().addLast(new StationClientHandler());
+                    }
+                });
+        return bootstrap;
     }
 
     public static void main(String[] args){

@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class ProgrammerServiceImpl implements ProgrammerService{
 
-    private Logger logger = LoggerFactory.getLogger(ProgrammerService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProgrammerServiceImpl.class);
 
     @Autowired
     private ProgrammerDao programmerDao;
@@ -27,13 +27,13 @@ public class ProgrammerServiceImpl implements ProgrammerService{
     @Override
     public List<Programmer> listProgrammers(){
         List<Programmer> programmerList = programmerDao.listProgrammers();
-        logger.info(""+programmerList.size());
+        logger.info("programmer list size:[{}]", programmerList.size());
         return programmerList;
     }
 
     @Override
     public void insertProgrammer(Programmer programmer) {
-        programmer.setUUID(UUIDUtils.getUUID32());
+        programmer.setUuid(UUIDUtils.getUUID32());
         programmerDao.insertProgrammer(programmer);
     }
 

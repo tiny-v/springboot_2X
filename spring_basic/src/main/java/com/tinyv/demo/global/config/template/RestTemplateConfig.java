@@ -1,4 +1,4 @@
-package com.tinyv.demo.global.config.restTemplate;
+package com.tinyv.demo.global.config.template;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy;
