@@ -26,7 +26,7 @@ public class CacheServiceImpl implements CacheService {
     private static final long SLEEP_TIME = 5*1000L;
 
     @Autowired
-    private Caffeine<String, String> cacheCaffeine;
+    private Caffeine<String, Object> cacheCaffeine;
 
     /**
      * 注解：@Cacheable Demo
