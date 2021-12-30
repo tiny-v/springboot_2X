@@ -52,7 +52,7 @@ public class CaffeineConfig {
                 .recordStats()
                 .removalListener(
                         (String key, Object value, RemovalCause cause)->
-                                logger.info("key:{} was removed, cause by:{}", key, cause)
+                                logger.info("key:[{}] was removed, cause by:[{}]", key, cause)
                 );
     }
 
