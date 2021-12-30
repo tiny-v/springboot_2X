@@ -1,7 +1,7 @@
 package com.tinyv.demo.global.config.template;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tinyv.demo.global.constant.GlobalErrorCode;
+import com.tinyv.demo.constant.GlobalErrorCode;
 import com.tinyv.demo.global.exception.CommonException;
 import com.tinyv.demo.global.response.BaseResponse;
 import org.slf4j.Logger;

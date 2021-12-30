@@ -26,7 +26,6 @@ public class TestRequestTypeController {
      * @return
      */
     @PostMapping(value="/testParam1")
-    @ResponseBody
     public void testParam1(@RequestBody TestRequestTypeA testRequest){
         logger.info("testRequest.getA:[{}], testRequest.getA.getClass:[{}]", testRequest.getA(), testRequest.getA().getClass());
         logger.info("testRequest.getB:[{}], testRequest.getA.getClass:[{}]", testRequest.getB(), testRequest.getA().getClass());
@@ -38,7 +37,6 @@ public class TestRequestTypeController {
      * @return
      */
     @PostMapping(value="/testParam2")
-    @ResponseBody
     public void testParam2(@RequestBody TestRequestTypeB testRequest){
         logger.info("testRequest.getA:[{}], testRequest.getA.getClass:[{}]", testRequest.getA(), testRequest.getA().getClass());
         logger.info("testRequest.getB:[{}], testRequest.getA.getClass:[{}]", testRequest.getB(), testRequest.getA().getClass());

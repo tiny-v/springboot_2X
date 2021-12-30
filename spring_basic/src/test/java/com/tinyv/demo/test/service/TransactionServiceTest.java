@@ -1,8 +1,8 @@
 package com.tinyv.demo.test.service;
 
 import com.tinyv.demo.BasicApps;
-import com.tinyv.demo.business.service.TransactionService;
-import com.tinyv.demo.business.service.impl.CacheServiceImpl;
+import com.tinyv.demo.transaction.service.TransactionService;
+import com.tinyv.demo.caffine.service.impl.CacheServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

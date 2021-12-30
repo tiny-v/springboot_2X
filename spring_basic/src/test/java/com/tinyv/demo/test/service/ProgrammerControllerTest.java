@@ -3,7 +3,7 @@ package com.tinyv.demo.test.service;
 import com.tinyv.demo.BasicApps;
 import com.tinyv.demo.business.bean.Programmer;
 import com.tinyv.demo.business.service.ProgrammerService;
-import com.tinyv.demo.business.service.impl.CacheServiceImpl;
+import com.tinyv.demo.caffine.service.impl.CacheServiceImpl;
 import com.tinyv.demo.test.tasks.MySqlTestTask;
 import com.tinyv.demo.test.util.LocalExecutorService;
 import org.junit.Test;

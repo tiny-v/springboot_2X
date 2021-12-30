@@ -1,10 +1,9 @@
 package com.tinyv.demo.test.tasks;
 
-import com.tinyv.demo.business.service.CacheService;
+import com.tinyv.demo.caffine.service.CacheService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
 import java.util.concurrent.Callable;
 
 /**
