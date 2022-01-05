@@ -19,8 +19,7 @@ springboot2 要求:
 > 2. 集成 Druid 连接池
 > 3. 集成 Mybatis
 > 4. 集成 Caffeine Cache
-> 5. 集成 RocketMQ
-> 6. 集成 Redis
+> 5. 集成 Redis
 
 
 
