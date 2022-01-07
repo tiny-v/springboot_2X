@@ -13,13 +13,13 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/1/6.
  */
 @Configuration
-public class RabbitMQConfig {
+public class RabbitConfig {
 
-    private static final String TOPIC_STOCK = "STOCK_TOPIC";
+    public static final String TOPIC_STOCK = "STOCK_TOPIC";
 
-    private static final String QUEUE_STOCK = "STOCK_QUEUE";
+    public static final String QUEUE_STOCK = "STOCK_QUEUE";
 
-    private static final String ROUTER_STOCK = "stock.*";
+    public static final String ROUTER_STOCK = "stock.*";
 
     @Bean
     public TopicExchange stockTopic(){
