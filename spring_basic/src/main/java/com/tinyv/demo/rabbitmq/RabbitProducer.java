@@ -23,10 +23,20 @@ public class RabbitProducer {
         if(StringUtils.isBlank(messageInfo)){
             return;
         }
-        MessageProperties properties = new MessageProperties();
-        properties.setAppId("Spring2X");
-        Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), properties);
+        Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageProperties());
         rabbitTemplate.convertAndSend(RabbitConfig.TOPIC_STOCK, RabbitConfig.ROUTER_STOCK, message);
+    }
+
+
+    /**
+     * 设置消息属性
+     * @return
+     */
+    private MessageProperties initMessageProperties(){
+        MessageProperties properties = new MessageProperties();
+        properties.setContentType("application/json");
+        properties.setAppId("Spring2X");
+        return properties;
     }
 
 }

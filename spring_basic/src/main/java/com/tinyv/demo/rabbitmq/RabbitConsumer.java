@@ -1,6 +1,5 @@
 package com.tinyv.demo.rabbitmq;
 
-import com.tinyv.demo.BasicApps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitConsumer {
 
-    public static final Logger logger = LoggerFactory.getLogger(BasicApps.class);
+    public static final Logger logger = LoggerFactory.getLogger(RabbitConsumer.class);
 
     @RabbitListener(queues = "#{rabbitConfig.QUEUE_STOCK}")
     public void stockInfoConsumer1(String content){
