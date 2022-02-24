@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.retry.annotation.EnableRetry;
+import org.springframework.retry.annotation.Recover;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -15,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
+@EnableRetry
 @MapperScan("com.tinyv.demo.business.dao")
 public class BasicApps {
 
@@ -24,5 +27,6 @@ public class BasicApps {
         logger.info("Game Start");
         SpringApplication.run(BasicApps.class, args);
     }
+
 
 }
