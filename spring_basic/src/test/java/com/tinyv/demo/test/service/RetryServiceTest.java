@@ -26,4 +26,9 @@ public class RetryServiceTest {
         retryService.doBiz2();
     }
 
+    @Test
+    public void doBiz3Test(){
+        retryService.doBiz3(5);
+    }
+
 }

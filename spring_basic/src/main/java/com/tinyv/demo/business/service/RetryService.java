@@ -10,6 +10,6 @@ public interface RetryService {
 
     void doBiz2();
 
-    void doBiz3();
+    void doBiz3(int param);
 
 }

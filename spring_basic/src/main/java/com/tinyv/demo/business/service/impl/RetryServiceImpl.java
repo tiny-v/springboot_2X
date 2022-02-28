@@ -3,8 +3,7 @@ package com.tinyv.demo.business.service.impl;
 import com.tinyv.demo.business.service.RetryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.retry.RetryContext;
-import org.springframework.retry.RetryPolicy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -19,6 +18,9 @@ import org.springframework.stereotype.Service;
 public class RetryServiceImpl implements RetryService {
 
     private static final Logger logger = LoggerFactory.getLogger(RetryServiceImpl.class);
+
+    @Autowired
+    private RetryTemplate retryTemplate;
 
     /**
      * @EnableRetry：此注解用于开启重试框架，可以修饰在SpringBoot启动类上面，也可以修饰在需要重试的类上
@@ -55,9 +57,27 @@ public class RetryServiceImpl implements RetryService {
         doBiz2Retry();
     }
 
+    /**
+     * 使用RetryTemplate来进行重试
+     * @param param
+     */
     @Override
-    public void doBiz3() {
-        RetryTemplate retryTemplate = new RetryTemplate();
+    public void doBiz3(int param) {
+        retryTemplate.execute(context -> {
+            logger.info("currentTime:[{}], context:[{}]", System.currentTimeMillis(), context);
+            try{
+                logger.info("result:", param/0);
+            }catch (ArithmeticException e){
+                logger.info("I'm ArithmeticException!!!");
+                throw e;
+            }
+            catch (Exception e){
+                logger.info("exception:[{}]", e);
+                throw e;
+            }
+
+            return true;
+        });
     }
 
     @Retryable(

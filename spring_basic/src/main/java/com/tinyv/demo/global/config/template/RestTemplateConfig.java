@@ -10,12 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * @author tiny_v
  * @date 2021/8/6.
  */
+@Component
 public class RestTemplateConfig {
 
     /** 最大连接数 */

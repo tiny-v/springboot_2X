@@ -1,7 +1,10 @@
 package com.tinyv.demo.rabbitmq;
 
-import com.tinyv.demo.rabbitmq.config.RabbitConfig;
+import com.tinyv.demo.rabbitmq.config.DirectRabbitConfig;
+import com.tinyv.demo.rabbitmq.config.TopicRabbitConfig;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -16,15 +19,35 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class RabbitProducer {
 
+    public static final Logger logger = LoggerFactory.getLogger(RabbitProducer.class);
+
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void send(String messageInfo){
+    /**
+     * 发送消息到Direct Exchange
+     * @param messageInfo
+     */
+    public void sendToDirectExchange(String messageInfo, String bindingKey){
         if(StringUtils.isBlank(messageInfo)){
             return;
         }
         Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageProperties());
-        rabbitTemplate.convertAndSend(RabbitConfig.TOPIC_STOCK, RabbitConfig.ROUTER_STOCK, message);
+        logger.info("Send Message, BindingKey:[{}], Info:[{}]", bindingKey, message);
+        rabbitTemplate.convertAndSend(DirectRabbitConfig.Exchange_Direct, bindingKey, message);
+    }
+
+    /**
+     * 发送消息到Topic Exchange
+     * @param messageInfo
+     */
+    public void sendToTopicExchange(String messageInfo, String bindingKey){
+        if(StringUtils.isBlank(messageInfo)){
+            return;
+        }
+        Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageProperties());
+        logger.info("Send Message, BindingKey:[{}], Info:[{}]", bindingKey, message);
+        rabbitTemplate.convertAndSend(TopicRabbitConfig.Exchange_Topic, bindingKey, message);
     }
 
 
