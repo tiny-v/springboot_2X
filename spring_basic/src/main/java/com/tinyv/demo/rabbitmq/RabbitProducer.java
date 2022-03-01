@@ -1,6 +1,8 @@
 package com.tinyv.demo.rabbitmq;
 
 import com.tinyv.demo.rabbitmq.config.DirectRabbitConfig;
+import com.tinyv.demo.rabbitmq.config.FanoutRabbitConfig;
+import com.tinyv.demo.rabbitmq.config.HeadersRabbitConfig;
 import com.tinyv.demo.rabbitmq.config.TopicRabbitConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -52,6 +54,35 @@ public class RabbitProducer {
 
 
     /**
+     * 发送消息到Fanout Exchange
+     * @param messageInfo
+     */
+    public void sendToFanoutExchange(String messageInfo){
+        if(StringUtils.isBlank(messageInfo)){
+            return;
+        }
+        Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageProperties());
+        logger.info("Send Fanout Message, Info:[{}]", message);
+        //fanout类型不关心路由， 可以随便写一个
+        rabbitTemplate.convertAndSend(FanoutRabbitConfig.Exchange_Fanout,"", message);
+    }
+
+
+    /**
+     * 发送消息到Fanout Exchange
+     * @param messageInfo
+     */
+    public void sendToHeaderExchange(String messageInfo){
+        if(StringUtils.isBlank(messageInfo)){
+            return;
+        }
+        Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageProperties());
+        logger.info("Send Headers Message, Info:[{}]", message);
+        rabbitTemplate.convertAndSend(HeadersRabbitConfig.Exchange_Headers,null, message);
+    }
+
+
+    /**
      * 设置消息属性
      * @return
      */
@@ -59,6 +90,8 @@ public class RabbitProducer {
         MessageProperties properties = new MessageProperties();
         properties.setContentType("application/json");
         properties.setAppId("Spring2X");
+        properties.setHeader("Queue", "headers");
+        properties.setHeader("type", "any");
         return properties;
     }
 

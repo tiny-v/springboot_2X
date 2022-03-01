@@ -31,10 +31,32 @@ public class RabbitConsumer {
         logger.info("topic consumer 1 receive the message:[{}]", content);
     }
 
-
     @RabbitListener(queues = "#{topicRabbitConfig.Queue_Topic_2}")
     public void topicConsumer2(String content){
         logger.info("topic consumer 2 receive the message:[{}]", content);
+    }
+
+    //Fanout
+    @RabbitListener(queues = "#{fanoutRabbitConfig.Queue_Fanout_1}")
+    public void fanoutConsumer1(String content){
+        logger.info("fanout consumer 1 receive the message:[{}]", content);
+    }
+
+    @RabbitListener(queues = "#{fanoutRabbitConfig.Queue_Fanout_2}")
+    public void fanoutConsumer2(String content){
+        logger.info("fanout consumer 2 receive the message:[{}]", content);
+    }
+
+
+    //Headers
+    @RabbitListener(queues = "#{headersRabbitConfig.Queue_Headers_1}")
+    public void headersConsumer1(String content){
+        logger.info("headers consumer 1 receive the message:[{}]", content);
+    }
+
+    @RabbitListener(queues = "#{headersRabbitConfig.Queue_Headers_2}")
+    public void headersConsumer2(String content){
+        logger.info("headers consumer 2 receive the message:[{}]", content);
     }
 
 }
