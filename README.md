@@ -6,8 +6,6 @@
 
 springboot2 要求:
 ------------------
-
-
 1. JDK 1.8 +
 2. MAVEN 3.2 +
 3. SpringFramework 5+
@@ -20,6 +18,10 @@ springboot2 要求:
 > 3. 集成 Mybatis
 > 4. 集成 Caffeine Cache
 > 5. 集成 Redis
+> 6. 集成 RabbitMQ
+
+<b>工具集成</b>
+> 1. spring-retry 重试
 
 
 
@@ -27,6 +29,7 @@ springboot2 要求:
 ---------------------
 1. @RunWith(SpringRunner.class)
 2. 使用 ThreadPoolExecutor 进行并发性能测试。
+
 
 编码规范:
 ---------------------
