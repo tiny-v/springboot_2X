@@ -1,4 +1,4 @@
-package com.tinyv.demo.rabbitmq;
+package com.tinyv.demo.rabbitmq.producer;
 
 import com.tinyv.demo.rabbitmq.config.DirectRabbitConfig;
 import com.tinyv.demo.rabbitmq.config.FanoutRabbitConfig;
@@ -16,8 +16,9 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * @author tiny_v
- * @date 2022/1/7.
+ * @date 2022/3/2.
  */
+
 @Component
 public class RabbitProducer {
 
@@ -96,3 +97,4 @@ public class RabbitProducer {
     }
 
 }
+

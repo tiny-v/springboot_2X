@@ -4,36 +4,41 @@
 ------------------
 在SpringBoot2下, 集成一些常用工具， 记录学习过程，且供以后参照。 复习的代价要远小于学习的 
 
-springboot2 要求:
+环境要求:
 ------------------
-1. JDK 1.8 +
-2. MAVEN 3.2 +
-3. SpringFramework 5+
+> 1. JDK 1.8 +
+> 2. MAVEN 3.2 +
+> 3. SpringFramework 5+
 
-项目已包括:
+项目已集成内容:
 ---------------------
-<b>spring_basic: </b> 
-> 1. 集成 Swagger, 版本: 2.8.0
-> 2. 集成 Druid 连接池
-> 3. 集成 Mybatis
-> 4. 集成 Caffeine Cache
-> 5. 集成 Redis
-> 6. 集成 RabbitMQ
+<b>Swagger(2.8.0)</b>
+
+<b>Mybatis</b>
+
+<b>Caffeine Cache</b>
+
+<b>Redis</b>
+
+<b>RabbitMQ</b>
+ > 1. 四种路由器类型
+ > 2. 死信队列
 
 <b>工具集成</b>
-> 1. spring-retry 重试
+> 1. Spring Retry 重试
+> 2. Spring RestTemplate 远程调用
 
 
 
 测试：
 ---------------------
-1. @RunWith(SpringRunner.class)
-2. 使用 ThreadPoolExecutor 进行并发性能测试。
+> 1. @RunWith(SpringRunner.class)
+> 2. 使用 ThreadPoolExecutor 进行并发性能测试。
 
 
 编码规范:
 ---------------------
-1. 使用Alibaba编码规约插件检查代码
+> 1. 使用Alibaba编码规约插件检查代码
 
 
 

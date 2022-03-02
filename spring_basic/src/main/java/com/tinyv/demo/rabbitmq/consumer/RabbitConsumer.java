@@ -1,4 +1,4 @@
-package com.tinyv.demo.rabbitmq;
+package com.tinyv.demo.rabbitmq.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

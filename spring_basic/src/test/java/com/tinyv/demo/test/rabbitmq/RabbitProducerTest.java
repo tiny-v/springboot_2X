@@ -1,8 +1,8 @@
 package com.tinyv.demo.test.rabbitmq;
 
 import com.tinyv.demo.BasicApps;
-import com.tinyv.demo.rabbitmq.RabbitProducer;
 import com.tinyv.demo.rabbitmq.config.DirectRabbitConfig;
+import com.tinyv.demo.rabbitmq.producer.RabbitProducer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class RabbitProducerTest {
 
     @Test
     public void sendDirectMessage(){
-        for(int i=0 ;i<10; i++){
+        for(int i=0 ;i<1000000; i++){
             rabbitProducer.sendToDirectExchange("hello world direct 1 : " + i, DirectRabbitConfig.Binding_Key_Direct1);
             rabbitProducer.sendToDirectExchange("hello world direct 2 : " + i, DirectRabbitConfig.Binding_Key_Direct2);
         }
