@@ -13,8 +13,11 @@
 项目已集成内容:
 ---------------------
 <b>Swagger(2.8.0)</b>
+> 默认访问地址： http://ip:port/swagger-ui.html
 
 <b>Mybatis</b>
+
+<b>logback+self4j</b>
 
 <b>Caffeine Cache</b>
 
