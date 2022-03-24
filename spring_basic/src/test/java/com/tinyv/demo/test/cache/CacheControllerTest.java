@@ -1,9 +1,9 @@
-package com.tinyv.demo.test.service;
+package com.tinyv.demo.test.cache;
 
 import com.tinyv.demo.BasicApps;
 import com.tinyv.demo.caffine.service.CacheService;
-import com.tinyv.demo.caffine.service.impl.CacheServiceImpl;
 import com.tinyv.demo.test.tasks.CacheTestTask;
+import org.apache.ibatis.jdbc.Null;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -18,7 +18,7 @@ import java.util.concurrent.*;
  * Created by TinyV on 2019/11/21.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes={BasicApps.class, CacheServiceImpl.class})
+@SpringBootTest(classes={BasicApps.class})
 public class CacheControllerTest {
 
     private static Logger logger = LoggerFactory.getLogger(CacheControllerTest.class);

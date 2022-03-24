@@ -24,7 +24,7 @@ public class RabbitProducerTest {
     public void sendDirectMessage(){
         for(int i=0 ;i<1000000; i++){
             rabbitProducer.sendToDirectExchange("hello world direct 1 : " + i, DirectRabbitConfig.Binding_Key_Direct1);
-            rabbitProducer.sendToDirectExchange("hello world direct 2 : " + i, DirectRabbitConfig.Binding_Key_Direct2);
+            //rabbitProducer.sendToDirectExchange("hello world direct 2 : " + i, DirectRabbitConfig.Binding_Key_Direct2);
         }
     }
 

@@ -1,8 +1,7 @@
-package com.tinyv.demo.test.service;
+package com.tinyv.demo.test.rabbitmq;
 
 import com.tinyv.demo.BasicApps;
-import com.tinyv.demo.business.service.RetryService;
-import com.tinyv.demo.test.BasicTestApp;
+import com.tinyv.demo.rabbitmq.producer.BatchRabbitProducer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,24 +10,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author tiny_v
- * @date 2022/2/24.
+ * @date 2022/3/15.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes={BasicApps.class})
-public class RetryServiceTest{
+public class BatchRabbitTest {
 
     @Autowired
-    private RetryService retryService;
+    private BatchRabbitProducer producer;
 
     @Test
-    public void doBizTest(){
-        retryService.doBiz();
-        retryService.doBiz2();
-    }
-
-    @Test
-    public void doBiz3Test(){
-        retryService.doBiz3(5);
+    public void test(){
+        int loop = 100;
+        for(int i=0; i<loop; i++){
+            producer.sendToBatchExchange("hi batch info "+i, "a.batch.a");
+        }
     }
 
 }

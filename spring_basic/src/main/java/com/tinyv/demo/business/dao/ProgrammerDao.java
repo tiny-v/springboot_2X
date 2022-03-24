@@ -17,7 +17,7 @@ public interface ProgrammerDao {
      * 插入数据
      * @param programmer
      */
-    void insertProgrammer(Programmer programmer);
+    int insertProgrammer(Programmer programmer);
 
     /**
      * 查询所有的 programmer

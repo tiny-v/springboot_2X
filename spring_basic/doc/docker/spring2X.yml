@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  spring2x:
+    image: spring2x:latest
+    container_name: spring2x
+    privileged: true
+    ports:
+      # 设置端口
+      - 8080:8080
+      - 1199:1199
+    restart: always
+    volumes:
+      - /opt/spring2X/logs:/log
+    deploy:
+      resources:           #资源限制
+        limits:
+          cpus: '0.50'
+          memory: 1024M

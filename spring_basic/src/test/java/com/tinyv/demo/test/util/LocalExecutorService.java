@@ -19,18 +19,13 @@ public class LocalExecutorService {
 
     public static ExecutorService getInstance(){
         if(executorService == null){
-            synchronized (executorService){
-                if(executorService == null){
-                    init();
-                }
-            }
+            init();
         }
         return executorService;
     }
 
     private static void init(){
         LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue(blockQueueSize);
-        //SynchronousQueue synchronousQueue = new SynchronousQueue();
         RejectedExecutionHandler rejectedExecutionHandler = getHandler(handlerNum);
         executorService = new ThreadPoolExecutor(corePoolSize, maxPoolSize, aliveTime, TimeUnit.SECONDS, linkedBlockingQueue, rejectedExecutionHandler);
     }

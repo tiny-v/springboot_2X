@@ -1,13 +1,16 @@
 package com.tinyv.demo.rabbitmq.producer;
 
+import com.tinyv.demo.constant.GlobalConstant;
 import com.tinyv.demo.rabbitmq.config.DirectRabbitConfig;
 import com.tinyv.demo.rabbitmq.config.FanoutRabbitConfig;
 import com.tinyv.demo.rabbitmq.config.HeadersRabbitConfig;
 import com.tinyv.demo.rabbitmq.config.TopicRabbitConfig;
+import com.tinyv.demo.util.UUIDUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,17 +80,29 @@ public class RabbitProducer {
         if(StringUtils.isBlank(messageInfo)){
             return;
         }
-        Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageProperties());
+        Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageHeaderProperties());
         logger.info("Send Headers Message, Info:[{}]", message);
         rabbitTemplate.convertAndSend(HeadersRabbitConfig.Exchange_Headers,null, message);
     }
 
 
+    private MessageProperties initMessageProperties(){
+        MessageProperties properties = new MessageProperties();
+        properties.setContentType("application/json");
+        properties.setContentEncoding(StandardCharsets.UTF_8.name());
+        properties.setAppId(GlobalConstant.AppId);
+        properties.setMessageId(UUIDUtils.getUUID32());
+        properties.setPriority(10);
+        //properties.setDeliveryMode(MessageDeliveryMode.NON_PERSISTENT);
+        properties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+        return properties;
+    }
+
     /**
      * 设置消息属性
      * @return
      */
-    private MessageProperties initMessageProperties(){
+    private MessageProperties initMessageHeaderProperties(){
         MessageProperties properties = new MessageProperties();
         properties.setContentType("application/json");
         properties.setAppId("Spring2X");
