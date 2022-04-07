@@ -1,8 +1,11 @@
 package com.tinyv.demo.test.rabbitmq;
 
 import com.tinyv.demo.BasicApps;
-import com.tinyv.demo.rabbitmq.config.DirectRabbitConfig;
-import com.tinyv.demo.rabbitmq.producer.RabbitProducer;
+import com.tinyv.demo.rabbitmq.exchanges.direct.DirectProducer;
+import com.tinyv.demo.rabbitmq.exchanges.direct.DirectRabbitElement;
+import com.tinyv.demo.rabbitmq.exchanges.fanout.FanoutProducer;
+import com.tinyv.demo.rabbitmq.exchanges.headers.HeadersProducer;
+import com.tinyv.demo.rabbitmq.exchanges.topic.TopicProducer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,34 +21,40 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RabbitProducerTest {
 
     @Autowired
-    public RabbitProducer rabbitProducer;
+    public DirectProducer directProducer;
+    @Autowired
+    public FanoutProducer fanoutProducer;
+    @Autowired
+    public HeadersProducer headersProducer;
+    @Autowired
+    public TopicProducer topicProducer;
 
     @Test
     public void sendDirectMessage(){
         for(int i=0 ;i<1000000; i++){
-            rabbitProducer.sendToDirectExchange("hello world direct 1 : " + i, DirectRabbitConfig.Binding_Key_Direct1);
-            //rabbitProducer.sendToDirectExchange("hello world direct 2 : " + i, DirectRabbitConfig.Binding_Key_Direct2);
+            directProducer.sendToDirectExchange("hello world direct 1 : " + i, DirectRabbitElement.Binding_Key_Direct1);
+            //rabbitProducer.sendToDirectExchange("hello world direct 2 : " + i, DirectRabbitElement.Binding_Key_Direct2);
         }
     }
 
     @Test
     public void sendTopicMessage(){
-        rabbitProducer.sendToTopicExchange("hello world topic 1 : ", "a.topic1.a");
-        rabbitProducer.sendToTopicExchange("hello world topic 2 : " , "a.a.topic1.a.a");
-        rabbitProducer.sendToTopicExchange("hello world topic 3 : ", "b.topic2.b");
-        rabbitProducer.sendToTopicExchange("hello world topic 4 : " , "b.b.topic2.b.b");//因为匹配规则用的是*， 所以这条收不到
+        topicProducer.sendToTopicExchange("hello world topic 1 : ", "a.topic1.a");
+        topicProducer.sendToTopicExchange("hello world topic 2 : " , "a.a.topic1.a.a");
+        topicProducer.sendToTopicExchange("hello world topic 3 : ", "b.topic2.b");
+        topicProducer.sendToTopicExchange("hello world topic 4 : " , "b.b.topic2.b.b");//因为匹配规则用的是*， 所以这条收不到
     }
 
     @Test
     public void sendFanoutMessage(){
-        rabbitProducer.sendToFanoutExchange("hello world fanout 1");
-        rabbitProducer.sendToFanoutExchange("hello world fanout 2");
+        fanoutProducer.sendToFanoutExchange("hello world fanout 1");
+        fanoutProducer.sendToFanoutExchange("hello world fanout 2");
     }
 
     @Test
     public void sendHeadersMessage(){
-        rabbitProducer.sendToHeaderExchange("hello world headers 1");
-        rabbitProducer.sendToHeaderExchange("hello world headers 2");
+        headersProducer.sendToHeaderExchange("hello world headers 1");
+        headersProducer.sendToHeaderExchange("hello world headers 2");
     }
 
 }

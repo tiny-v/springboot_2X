@@ -27,8 +27,9 @@ public class RetryServiceTest{
     }
 
     @Test
-    public void doBiz3Test(){
-        retryService.doBiz3(5);
+    public void doBiz3Test() throws Throwable {
+        int result = retryService.doBiz3(5);
+        System.out.println(result);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.tinyv.demo.rabbitmq.config;
+package com.tinyv.demo.rabbitmq.ack;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/2/28.
  */
 @Configuration
-public class BatchRabbitConfig {
+public class BatchRabbitElement {
 
     //Exchange
     public static final String Batch_Exchange = "Batch_Topic";

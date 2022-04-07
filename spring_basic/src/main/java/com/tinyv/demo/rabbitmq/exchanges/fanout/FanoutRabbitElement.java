@@ -1,4 +1,4 @@
-package com.tinyv.demo.rabbitmq.config;
+package com.tinyv.demo.rabbitmq.exchanges.fanout;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/2/28.
  */
 @Configuration
-public class FanoutRabbitConfig {
+public class FanoutRabbitElement {
 
     /**
      * 广播模式 --  交换机直接把消息广播给所有绑定的队列

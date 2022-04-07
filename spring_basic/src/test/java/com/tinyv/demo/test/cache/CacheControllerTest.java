@@ -3,6 +3,7 @@ package com.tinyv.demo.test.cache;
 import com.tinyv.demo.BasicApps;
 import com.tinyv.demo.caffine.service.CacheService;
 import com.tinyv.demo.test.tasks.CacheTestTask;
+import com.tinyv.demo.test.util.NoAssert;
 import org.apache.ibatis.jdbc.Null;
 import org.junit.Test;
 import org.junit.runner.RunWith;

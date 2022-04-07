@@ -23,12 +23,14 @@ public class CheckHappyTest {
     private static Logger logger = LoggerFactory.getLogger(CheckHappyTest.class);
 
 
+    private final String basePackage = "com.tinyv.demo.test";
+
     /**
-     * 反编译，获取文件内容
+     * 执行反编译命令， 返回值为指定方法的反编译内容
      * @param classPath
      * @return
      */
-    public String getClassContent(String classPath){
+    private String getClassContent(String classPath){
         StringBuilder sb = new StringBuilder();
         String cmd = "javap -c "+classPath;
         try {
@@ -50,13 +52,12 @@ public class CheckHappyTest {
     }
 
 
-
     /**
-     * 执行反编译命令， 返回值为指定方法的反编译内容
+     * 从类的反编译内容中，抽取指定方法的内容
      * @param methodName
      * @return
      */
-    public String getMethodContent(String classContent, String methodName){
+    private String getMethodContent(String classContent, String methodName){
         StringBuilder sb = new StringBuilder();
         String[] lines = classContent.split("\r\n");
         boolean print = false;
@@ -77,19 +78,67 @@ public class CheckHappyTest {
     /**
      * 校验是否有Assert断言
      * @param mContent
-     * @param method
      * @return
      */
-    public boolean checkAssert(String mContent, String method){
+    private boolean checkAssert(String mContent){
         try{
-            return mContent.contains("invokestatic") && mContent.contains("Assert.");
+            return mContent.contains("invokestatic") && mContent.contains("org/junit/Assert.");
         }catch (Exception e){
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
-    public static List<String> getClassName(String packageName, boolean childPackage) {
+    /**
+     * 加载类
+     * @param name
+     * @return
+     */
+    private Class getBasicClass(String name) {
+        Class clazz = null;
+        try {
+            clazz = Class.forName(name);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return clazz;
+    }
+
+    /**
+     * 获取需要校验的有没有断言的Case
+     * 1. 如果类上加了@Ignore注解, 不需要校验
+     * 2. 方法上没有@Test注解，或者加了@Ignore注解 或者 方法使用excepted进行异常断言， 不需要校验
+     * @param classPath
+     * @return
+     */
+    private ArrayList getJunitMethods(String classPath){
+        Class clazz = getBasicClass(classPath);
+        if(clazz==null){
+            return null;
+        }
+        //如果类上加了@Ignore注解, 则认为不需要校验
+        Annotation cIgnore = clazz.getAnnotation(Ignore.class);
+        if(cIgnore!=null){
+            return null;
+        }
+        Method[] methods = clazz.getMethods();
+        if(clazz.getMethods()==null || clazz.getMethods().length==0){
+            return null;
+        }
+        ArrayList<String> methodNames = new ArrayList();
+        for (Method method : methods) {
+            Annotation mAnnotation = method.getAnnotation(Test.class);
+            Annotation mIgnore = method.getAnnotation(Ignore.class);
+            Annotation noAssert = method.getAnnotation(NoAssert.class);
+            //方法上加了@Test注解 && 方法没有使用excepted进行异常断言 && 方法没加@Ignore注解 -> 认为是需要校验的case
+            if(mAnnotation!=null && mAnnotation.toString().contains("expected=class org.junit.Test$None)") && mIgnore==null && noAssert==null){
+                methodNames.add(method.getName());
+            }
+        }
+        return methodNames;
+    }
+
+    private List<String> getClassName(String packageName, boolean childPackage) {
         List<String> fileNames = null;
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         String packagePath = packageName.replace(".", "/");
@@ -103,7 +152,7 @@ public class CheckHappyTest {
         return fileNames;
     }
 
-    private static List<String> getClassNameByFile(String filePath, List<String> className, boolean childPackage) {
+    private List<String> getClassNameByFile(String filePath, List<String> className, boolean childPackage) {
         List<String> myClassName = new ArrayList<>();
         File file = new File(filePath);
         File[] childFiles = file.listFiles();
@@ -122,35 +171,24 @@ public class CheckHappyTest {
         return myClassName;
     }
 
-    /**
-     * 加载类
-     * @param name
-     * @return
-     */
-    public Class getBasicClass(String name) {
-        Class clazz = null;
+    private void execute() {
+        String split = basePackage.split("[.]")[0];
         try {
-            clazz = Class.forName(name);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return clazz;
-    }
-
-    public void test(String backPackage) {
-        String split = "com";
-        try {
-            List<String> files = getClassName(backPackage, Boolean.TRUE);
+            List<String> files = getClassName(basePackage, Boolean.TRUE);
+            int m_number = 0;
             for (String file : files) {
                 String classPath = (split+file.split(split)[1]).replace("\\", ".").replace(".class", "");
                 ArrayList<String> methodNames = getJunitMethods(classPath);
-                if(methodNames!=null && methodNames.size()>0){
-                   String c_content = getClassContent(file);
-                   for(String methodName : methodNames){
-                       String m_content = getMethodContent(c_content, methodName);
-                       logger.info("类名:[{}], 方法名:[{}], 有断言:[{}]", classPath, methodName, checkAssert(m_content, methodName));
-
-                   }
+                if(methodNames==null || methodNames.size()==0){
+                    continue;
+                }
+                String c_content = getClassContent(file);
+                logger.info("===== 类名:[{}]",  classPath);
+                for(String methodName : methodNames){
+                    String m_content = getMethodContent(c_content, methodName);
+                    if(!checkAssert(m_content)){
+                        logger.info("========== No.{}, 方法名:[{}]", ++m_number, methodName);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -158,33 +196,12 @@ public class CheckHappyTest {
         }
     }
 
-    public ArrayList getJunitMethods(String classPath){
-        Class clazz = getBasicClass(classPath);
-        if(clazz==null){
-            return null;
-        }
-        Annotation cIgnore = clazz.getAnnotation(Ignore.class);
-        if(cIgnore!=null){
-            return null;
-        }
-        Method[] methods = clazz.getMethods();
-        if(clazz.getMethods()==null || clazz.getMethods().length==0){
-            return null;
-        }
-        ArrayList<String> methodNames = new ArrayList();
-        for (Method method : methods) {
-            Annotation mAnnotation = method.getAnnotation(Test.class);
-            Annotation mIgnore = method.getAnnotation(Ignore.class);
-            if(mAnnotation!=null && mAnnotation.toString().contains("expected=class org.junit.Test$None)") && mIgnore==null){
-                methodNames.add(method.getName());
-            }
-        }
-        return methodNames;
-    }
-
     public static void main(String[] args){
-        new CheckHappyTest().test("com.tinyv.demo.test");
+        logger.info("============================== Start ===================================");
+        long startTime = System.currentTimeMillis();
+        new CheckHappyTest().execute();
+        logger.info("============================== End ===================================");
+        logger.info("============================== Total Cost: {} seconds", (System.currentTimeMillis()-startTime)/1000);
     }
-
 
 }

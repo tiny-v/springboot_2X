@@ -1,4 +1,4 @@
-package com.tinyv.demo.rabbitmq.config;
+package com.tinyv.demo.rabbitmq.exchanges.topic;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/2/28.
  */
 @Configuration
-public class TopicRabbitConfig {
+public class TopicRabbitElement {
 
     //Exchange
     public static final String Exchange_Topic = "Exchange_Topic";

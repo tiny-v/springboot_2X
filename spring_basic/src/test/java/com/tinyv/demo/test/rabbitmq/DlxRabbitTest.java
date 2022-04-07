@@ -1,8 +1,8 @@
 package com.tinyv.demo.test.rabbitmq;
 
 import com.tinyv.demo.BasicApps;
-import com.tinyv.demo.rabbitmq.config.DlxRabbitConfig;
-import com.tinyv.demo.rabbitmq.producer.DlxRabbitProducer;
+import com.tinyv.demo.rabbitmq.dlx.DlxRabbitElement;
+import com.tinyv.demo.rabbitmq.dlx.DlxRabbitProducer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,13 @@ public class DlxRabbitTest {
 
     @Test
     public void sendToTtlQueueTest(){
-        dlxRabbitProducer.sendToTtlExchange(DlxRabbitConfig.TTL_Exchange, "hello, i want to enter the dead queue", DlxRabbitConfig.TTL_Binding);
+        dlxRabbitProducer.sendToTtlExchange(DlxRabbitElement.TTL_Exchange, "hello, i want to enter the dead queue", DlxRabbitElement.TTL_Binding);
     }
 
     @Test
     public void sendToMaxSizeQueueTest(){
         for(int i=1; i<=12; i++){
-            dlxRabbitProducer.sendToTtlExchange(DlxRabbitConfig.TTL_Exchange, "hello, i want to enter the dead queue. num:"+i, DlxRabbitConfig.Max_Size_Binding);
+            dlxRabbitProducer.sendToTtlExchange(DlxRabbitElement.TTL_Exchange, "hello, i want to enter the dead queue. num:"+i, DlxRabbitElement.Max_Size_Binding);
         }
     }
 

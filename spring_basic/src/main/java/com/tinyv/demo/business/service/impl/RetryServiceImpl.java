@@ -4,11 +4,15 @@ import com.tinyv.demo.business.service.RetryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.RetryCallback;
+import org.springframework.retry.RetryContext;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author tiny_v
@@ -62,21 +66,19 @@ public class RetryServiceImpl implements RetryService {
      * @param param
      */
     @Override
-    public void doBiz3(int param) {
-        retryTemplate.execute(context -> {
-            logger.info("currentTime:[{}], context:[{}]", System.currentTimeMillis(), context);
+    public int doBiz3(int param){
+        return retryTemplate.execute(retryContext -> {
+            Integer result;
             try{
-                logger.info("result:", param/0);
+                result = param / 0;
             }catch (ArithmeticException e){
-                logger.info("I'm ArithmeticException!!!");
+                logger.info("I'm ArithmeticException!!! current time:{}", System.currentTimeMillis()/1000);
                 throw e;
-            }
-            catch (Exception e){
+            } catch (Exception e){
                 logger.info("exception:[{}]", e);
                 throw e;
             }
-
-            return true;
+            return result;
         });
     }
 

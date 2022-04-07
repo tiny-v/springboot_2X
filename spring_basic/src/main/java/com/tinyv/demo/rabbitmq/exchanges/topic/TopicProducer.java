@@ -1,10 +1,12 @@
-package com.tinyv.demo.rabbitmq.producer;
+package com.tinyv.demo.rabbitmq.exchanges.topic;
 
 import com.tinyv.demo.constant.GlobalConstant;
+import com.tinyv.demo.util.UUIDUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,35 +15,39 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * @author tiny_v
- * @date 2022/3/2.
+ * @date 2022/4/2.
  */
 @Component
-public class DlxRabbitProducer {
+public class TopicProducer {
 
-    public static final Logger logger = LoggerFactory.getLogger(DlxRabbitProducer.class);
+    public static final Logger logger = LoggerFactory.getLogger(TopicProducer.class);
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
     /**
-     * 发送消息到 TTL Exchange
+     * 发送消息到Topic Exchange
      * @param messageInfo
      */
-    public void sendToTtlExchange(String exchange, String messageInfo, String bindingKey){
+    public void sendToTopicExchange(String messageInfo, String bindingKey){
         if(StringUtils.isBlank(messageInfo)){
             return;
         }
         Message message = new Message(messageInfo.getBytes(StandardCharsets.UTF_8), initMessageProperties());
         logger.info("Send Message, BindingKey:[{}], Info:[{}]", bindingKey, message);
-        rabbitTemplate.convertAndSend(exchange, bindingKey, message);
+        rabbitTemplate.convertAndSend(TopicRabbitElement.Exchange_Topic, bindingKey, message);
     }
 
-    private MessageProperties initMessageProperties(){
+
+    private MessageProperties initMessageProperties() {
         MessageProperties properties = new MessageProperties();
         properties.setContentType("application/json");
+        properties.setContentEncoding(StandardCharsets.UTF_8.name());
         properties.setAppId(GlobalConstant.AppId);
+        properties.setMessageId(UUIDUtils.getUUID32());
+        properties.setPriority(10);
+        properties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
         return properties;
     }
-
 
 }

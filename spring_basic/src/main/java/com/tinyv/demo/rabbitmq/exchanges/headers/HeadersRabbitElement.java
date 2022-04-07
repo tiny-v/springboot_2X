@@ -1,4 +1,4 @@
-package com.tinyv.demo.rabbitmq.config;
+package com.tinyv.demo.rabbitmq.exchanges.headers;
 
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +16,7 @@ import java.util.Map;
  * @date 2022/2/28.
  */
 @Configuration
-public class HeadersRabbitConfig {
+public class HeadersRabbitElement {
 
     // 路由器
     public static final String Exchange_Headers = "Exchange_Headers";

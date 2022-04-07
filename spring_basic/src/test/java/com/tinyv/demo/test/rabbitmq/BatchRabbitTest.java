@@ -1,7 +1,7 @@
 package com.tinyv.demo.test.rabbitmq;
 
 import com.tinyv.demo.BasicApps;
-import com.tinyv.demo.rabbitmq.producer.BatchRabbitProducer;
+import com.tinyv.demo.rabbitmq.ack.BatchRabbitProducer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

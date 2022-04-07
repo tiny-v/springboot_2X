@@ -1,4 +1,4 @@
-package com.tinyv.demo.rabbitmq.config;
+package com.tinyv.demo.rabbitmq.exchanges.direct;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/1/6.
  */
 @Configuration
-public class DirectRabbitConfig {
+public class DirectRabbitElement {
 
     //路由器 Exchange
     public static final String Exchange_Direct = "Exchange_Direct";

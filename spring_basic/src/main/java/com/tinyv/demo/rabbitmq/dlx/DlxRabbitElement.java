@@ -1,9 +1,10 @@
-package com.tinyv.demo.rabbitmq.config;
+package com.tinyv.demo.rabbitmq.dlx;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * 死信队列配置
  */
 @Component
-public class DlxRabbitConfig {
+public class DlxRabbitElement {
 
     /*********************************** 声明死信路由器和死信队列 *************************************/
 
