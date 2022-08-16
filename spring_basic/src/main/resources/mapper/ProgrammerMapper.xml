@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tinyv.demo.business.dao.ProgrammerDao">
+<mapper namespace="com.spring2x.demo.business.dao.ProgrammerDao">
 
-    <select id="listProgrammers" resultType="com.tinyv.demo.business.bean.Programmer">
+    <select id="listProgrammers" resultType="com.spring2x.demo.business.bean.Programmer">
         SELECT * FROM programmer
     </select>
 
-    <insert id="insertProgrammer" parameterType="com.tinyv.demo.business.bean.Programmer">
+    <insert id="insertProgrammer" parameterType="com.spring2x.demo.business.bean.Programmer">
         INSERT INTO `programmer`
         (
             UUID,

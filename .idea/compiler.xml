@@ -7,17 +7,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="core" />
+        <module name="spring_rabbitmq" />
+        <module name="spring_cache" />
         <module name="spring_basic" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="core" target="8" />
       <module name="spring_basic" target="1.8" />
+      <module name="spring_cache" target="8" />
+      <module name="spring_rabbitmq" target="8" />
       <module name="springboot_2X" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="core" options="-parameters" />
       <module name="spring_basic" options="-parameters" />
+      <module name="spring_cache" options="-parameters" />
+      <module name="spring_rabbitmq" options="-parameters" />
     </option>
   </component>
 </project>
